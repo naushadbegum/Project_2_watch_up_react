@@ -59,27 +59,3 @@ export default class Home extends React.Component {
         );
     }
 }
-
-// import React from "react";
-// import axios from "axios";
-
-// export default class Home extends React.Component {
-//     url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us77.gitpod.io/";
-
-//     state = {
-//         strapId: "",
-//         strap: [],
-//     }
-
-
-// async componentDidMount() {
-//     let strapResponse = await axios.get(this.url + "strap");
-//     console.log(strapResponse.data);
-
-//     this.setState({
-//         strap: strapResponse.data
-//     })
-
-// }
-// }
-
