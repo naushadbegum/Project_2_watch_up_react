@@ -1,7 +1,8 @@
 input[type=text] {
     background: transparent;
     border: none;
-    border-bottom: 1px solid #000000;
+    border-bottom: 2px solid #000000;
+    border-radius: 0rem;
   }
 
 .form-control {
