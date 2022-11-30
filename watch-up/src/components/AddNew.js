@@ -16,39 +16,44 @@ export default class AddNew extends React.Component {
         water_resistance: "",
         glass_material: "",
         movements: "",
-        watch_calender: {},
+        day: "",
+        month: "",
+        year: "",
         image: "",
         gender: "",
+        user: {},
         username: "",
         email: "",
 
 
         strapId: "",
-        strap: [],
+        straps: [],
 
-        watch_caseId: "",
-        watch_case: [],
+        caseId: "",
+        cases: [],
 
         showBrandError: false,
         showModelError: false,
         showPriceError: false,
         showYearError: false,
         showImageError: false,
+        showGenderError: false,
         showUsernameError: false,
-        showEmailError: false
+        showEmailError: false,
+
     };
 
 
 
     async componentDidMount() {
-        let strapResponse = await axios.get(this.url + "strap");
-        console.log(strapResponse.data);
-        let caseResponse = await axios.get(this.url + "case");
-        console.log(strapResponse.data);
+        let strapsResponse = await axios.get(this.url + "straps");
+        console.log(strapsResponse.data);
+        let casesResponse = await axios.get(this.url + "cases");
+        console.log(casesResponse.data);
 
         this.setState({
-            strap: strapResponse.data,
-            watch_case: caseResponse.data
+            straps: strapsResponse.data,
+            cases: casesResponse.data
         })
     }
 
@@ -63,17 +68,16 @@ export default class AddNew extends React.Component {
         let water_resistance = this.state.water_resistance;
         let glass_material = this.state.glass_material;
         let movements = this.state.movements;
-        
-        
-        let watch_calender = {
-            "day": Number(this.state.day),
-            "month": Number(this.state.month),
-            "year": Number(this.state.year)
-        }
+        let user = {
+            "username": this.state.username,
+            "email": this.state.email
+        };
+        let strapId = this.state.strapId;
+        let caseId = this.state.caseId;
 
 
         this.state.brand.trim()
-        if (!this.state.brand || this.state.brand.length > 50 || this.state.brand == 0) {
+        if (!this.state.brand || this.state.brand.length > 50 || this.state.brand === 0) {
             this.setState({
                 showBrandError: true
             })
@@ -83,7 +87,7 @@ export default class AddNew extends React.Component {
             })
         }
         this.state.model.trim()
-        if (!this.state.model || this.state.model.length > 50 || this.state.model == 0) {
+        if (!this.state.model || this.state.model.length > 50 || this.state.model === 0) {
             this.setState({
                 showModelError: true
             })
@@ -94,7 +98,7 @@ export default class AddNew extends React.Component {
         }
 
         // this.state.price.trim()
-        if (!this.state.price || this.state.price <= 0 || this.state.price > 100000000000 || this.state.price == 0) {
+        if (!this.state.price || this.state.price <= 0 || this.state.price > 100000000000 || this.state.price === 0) {
             this.setState({
                 showPriceError: true
             })
@@ -104,8 +108,8 @@ export default class AddNew extends React.Component {
             })
         }
         // this.state.year_made.trim()
-        if (!this.state.year_made || this.state.year_made > 9999 || this.state.year_made == 0) {
-          this.setState({
+        if (!this.state.year_made || this.state.year_made > 9999 || this.state.year_made === 0) {
+            this.setState({
                 showYearError: true
             })
         } else {
@@ -115,13 +119,22 @@ export default class AddNew extends React.Component {
         }
 
         // this.state.image.trim()
-        if (!this.state.image || this.state.image > 300 || this.state.image == 0) {
+        if (!this.state.image || this.state.image > 300 || this.state.image === 0) {
             this.setState({
                 showImageError: true
             })
         } else {
             this.setState({
                 showImageError: false
+            })
+        }
+        if (!this.state.gender || this.state.username == null) {
+            this.setState({
+                showGenderError: true
+            })
+        } else {
+            await this.setState({
+                showGenderError: false
             })
         }
 
@@ -146,18 +159,6 @@ export default class AddNew extends React.Component {
         }
 
 
-        // if (!this.state.showBrandError){
-        //     let createdBy = {
-
-        //     }
-        // }
-        // let day = this.state.day;
-        // let month = this.state.month;
-        // let year = this.state.year;
-
-        // let watch_calender = this.state.watch_calender;
-        // let strapId = this.state.strapId;
-
         try {
             let response = await axios.post(this.url + "create-listings", {
                 brand,
@@ -169,7 +170,9 @@ export default class AddNew extends React.Component {
                 movements,
                 image,
                 gender,
-                watch_calender
+                user,
+                strapId,
+                caseId
 
             })
             console.log(response)
@@ -178,17 +181,6 @@ export default class AddNew extends React.Component {
         }
     }
 
-    // checkError = async () => {
-    //     let addData = {
-    //         brand: this.state.brand
-    //     }
-    //     let isValid = await addSchema.isValid(addData);
-    //     console.log(isValid);
-    //     this.setState({
-    //         noError: isValid
-    //     })
-    // }
-
     updateFormField = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -196,31 +188,50 @@ export default class AddNew extends React.Component {
         });
     };
 
-    onValueChange = (event) => {
+    // updateFormField = (e) => {
+    //     if (e.target.type === "checkbox") {
+    //         let currentValues = this.state[e.target.name];
+    //         let modifiedValues;
+    //         if (!currentValues.includes(e.target.value)) {
+    //             modifiedValues = [...currentValues, e.target.value];
+    //         } else {
+    //             modifiedValues = currentValues.filter((element) => {
+    //                 return element !== e.target.value
+    //             })
+    //         }
+    //         this.setState({
+    //             [e.target.name]: modifiedValues
+    //         })
+    //     } else {
+    //         this.setState({
+    //             [e.target.name]: e.target.value
+    //         })
+    //     }
+    // }
+
+    updateRadioField = (event) => {
         this.setState({
             selectedOption: event.target.value
         });
     }
 
-    // updateCheckbox = (event) => {
-    //     if 
+    // updateCheckboxField = (event) => {
     //     this.setState({
-
-    //     })
+    //         selectedOption: event.target.value
+    //     });
     // }
 
-    errorPopupClose = () => {
-        this.setState({
-            addErrorShow: false
-        })
-    }
-
-    errorPopupShow = () => {
-        this.setState({
-            addErrorShow: true
-        })
-    }
-
+    // updateCheckboxField = (event) => {
+    //     if (event.target.value == "0") {
+    //         this.setState({
+    //             [event.target.name] : 1
+    //         }) 
+    //     } else {
+    //         this.setState({
+    //             [event.target.name] : 0
+    //         })
+    //     }
+    // }
 
 
     render() {
@@ -313,9 +324,9 @@ export default class AddNew extends React.Component {
                                     <Form>
                                         {['radio'].map((type) => (
                                             <div value={this.state.gender}
-                                                 onChange={this.updateFormField} 
-                                                 key={`inline-${type}`} 
-                                                 className="mb-3">
+                                                onChange={this.updateFormField}
+                                                key={`inline-${type}`}
+                                                className="mb-3">
                                                 <Form.Check
                                                     // inline
                                                     // label="Male"
@@ -328,7 +339,7 @@ export default class AddNew extends React.Component {
                                                     label="Male"
                                                     value="male"
                                                     checked={this.state.gender === "male"}
-                                                    onChange={this.onValueChange}                                                />
+                                                    onChange={this.updateRadioField} />
                                                 <Form.Check
                                                     // inline
                                                     // label="Female"
@@ -341,9 +352,9 @@ export default class AddNew extends React.Component {
                                                     label="Female"
                                                     value="female"
                                                     checked={this.state.gender === "female"}
-                                                    onChange={this.onValueChange}  
+                                                    onChange={this.updateRadioField}
                                                 />
-                                                      <Form.Check
+                                                <Form.Check
                                                     // inline
                                                     // label="Unisex"
                                                     // name="group1"
@@ -355,8 +366,15 @@ export default class AddNew extends React.Component {
                                                     label="Unisex"
                                                     value="unisex"
                                                     checked={this.state.gender === "unisex"}
-                                                    onChange={this.onValueChange}  
+                                                    onChange={this.updateRadioField}
                                                 />
+                                                {this.state.showGenderError ? (
+                                                    <Form.Text className='errorMessage'>
+                                                        Please select a gender
+                                                    </Form.Text>
+                                                ) : (
+                                                    ''
+                                                )}
                                             </div>
                                         ))}
                                     </Form>
@@ -384,18 +402,18 @@ export default class AddNew extends React.Component {
                             </h5>
                             <div className='watch-form-group row px-3 py-3 mt-3'>
                                 <Form.Group className='col-lg-6 mb-3'>
-                                    <Form.Label>Case Material and Colour</Form.Label>
-                                    <Form.Select name="watch_caseId" onChange={this.updateFormField}>
-                                        {this.state.watch_case.map(watch_case => (
-                                            <option value={watch_case._id}>{watch_case.name}</option>
+                                    <Form.Label>Case Material</Form.Label>
+                                    <Form.Select name="caseId" onChange={this.updateFormField}>
+                                        {this.state.cases.map(caseone => (
+                                            <option value={caseone._id}>{caseone.caseMaterial}</option>
                                         ))}
                                     </Form.Select>
                                 </Form.Group>
                                 <Form.Group className='col-lg-6 mb-3'>
-                                    <Form.Label>Strap Material and Colour</Form.Label>
+                                    <Form.Label>Strap Material</Form.Label>
                                     <Form.Select name="strapId" onChange={this.updateFormField}>
-                                        {this.state.strap.map(strap => (
-                                            <option value={strap._id}>{strap.name}</option>
+                                        {this.state.straps.map(straps => (
+                                            <option value={straps._id}>{straps.strapMaterial}</option>
                                         ))}
                                     </Form.Select>
                                 </Form.Group>
@@ -457,30 +475,52 @@ export default class AddNew extends React.Component {
                                                 <Form.Check
                                                     inline
                                                     label="Day"
-                                                    name="group1"
+                                                    name="day"
+                                                    value="yes"
                                                     type={type}
                                                     id={`inline-${type}-1`}
+                                                    checked={this.state.day.includes('yes')}
+                                                    onChange={this.updateFormField}
                                                 />
+
+                                                </div>
+                                                ))}
+                                    </Form>
+                                    <Form>
+                                        {['checkbox'].map((type) => (
+                                            <div key={`inline-${type}`} className="mb-3">
                                                 <Form.Check
                                                     inline
                                                     label="Month"
-                                                    name="group1"
+                                                    name="month"
+                                                    value="yes"
                                                     type={type}
-                                                    id={`inline-${type}-2`}
+                                                    id={`inline-${type}-1`}
+                                                    checked={this.state.month.includes('yes')}
+                                                    onChange={this.updateFormField}
                                                 />
+
+                                                </div>
+                                                ))}
+                                    </Form>
+                                    <Form>
+                                        {['checkbox'].map((type) => (
+                                            <div key={`inline-${type}`} className="mb-3">
                                                 <Form.Check
                                                     inline
                                                     label="Year"
-                                                    name="group1"
+                                                    name="year"
+                                                    value="yes"
                                                     type={type}
-                                                    id={`inline-${type}-2`}
+                                                    id={`inline-${type}-1`}
+                                                    checked={this.state.year.includes('yes')}
+                                                    onChange={this.updateFormField}
                                                 />
-                                            </div>
-                                        ))}
+                                                </div>
+                                                ))}
                                     </Form>
-                                </Form.Group>
-
-                            </div>
+                                    </Form.Group>
+                        </div>
                             <h5 className='font-weight-500 mt-4'>
                                 Personal Information
                             </h5>
@@ -494,7 +534,7 @@ export default class AddNew extends React.Component {
                                         value={this.state.username}
                                         onChange={this.updateFormField}
                                     />
-                                          {this.state.showUsernameError ? (
+                                    {this.state.showUserNameError ? (
                                         <Form.Text className='errorMessage'>
                                             Enter a valid username
                                         </Form.Text>
@@ -511,7 +551,7 @@ export default class AddNew extends React.Component {
                                         value={this.state.email}
                                         onChange={this.updateFormField}
                                     />
-                                          {this.state.showEmailError ? (
+                                    {this.state.showEmailError ? (
                                         <Form.Text className='errorMessage'>
                                             Enter a valid email
                                         </Form.Text>
@@ -523,10 +563,12 @@ export default class AddNew extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <button className="btn btn-primary mt-3" onClick={() => { this.addNew() }}>Add new watch</button>
+
                     <div>
+
                     </div>
                 </section>
+                <button className="btn btn-primary mt-3" onClick={() => { this.addNew() }}>Add new watch</button>
             </React.Fragment>
         );
     }

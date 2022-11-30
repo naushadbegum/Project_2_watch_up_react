@@ -41,17 +41,30 @@ export default class Home extends React.Component {
                                     {listings.year_made}
                                 </h3>
                                 <h3 className="card-title">
-                                    {listings.water_resistance}
-                                </h3>
-                                <h3 className="card-title">
                                     {listings.gender}
                                 </h3>
                                 <h3 className="card-title">
                                     {listings.image}
                                 </h3>
                                 <h3 className="card-title">
-                                    {listings.strap.name}
+                                    {listings.water_resistance}
                                 </h3>
+                                <h3 className="card-title">
+                                    {listings.glass_material}
+                                </h3>
+                                {/* <h3 className="card-title">
+                                    {listings.strapId[0].strapMaterial}
+                                </h3>
+                                <h3 className="card-title">
+                                    {listings.caseId[0].caseMaterial}
+                                </h3> */}
+                                <h3 className="card-title">
+                                    {listings.movements}
+                                </h3>
+                                <h3 className="card-title">
+                                    {listings.user.username}
+                                </h3>
+                                <button>Edit</button>
                             </div>
                         </div>))}
                 </div>  
