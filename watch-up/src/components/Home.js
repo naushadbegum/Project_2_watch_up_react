@@ -58,12 +58,12 @@ export default class Home extends React.Component {
                                 <h3 className="card-title">
                                     {listings.caseId[0].caseMaterial}
                                 </h3> */}
-                                <h3 className="card-title">
+                                {/* <h3 className="card-title">
                                     {listings.movements}
                                 </h3>
                                 <h3 className="card-title">
                                     {listings.user.username}
-                                </h3>
+                                </h3> */}
                                 <button>Edit</button>
                             </div>
                         </div>))}
