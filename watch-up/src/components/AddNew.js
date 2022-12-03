@@ -191,50 +191,12 @@ export default class AddNew extends React.Component {
         });
     };
 
-    // updateFormField = (e) => {
-    //     if (e.target.type === "checkbox") {
-    //         let currentValues = this.state[e.target.name];
-    //         let modifiedValues;
-    //         if (!currentValues.includes(e.target.value)) {
-    //             modifiedValues = [...currentValues, e.target.value];
-    //         } else {
-    //             modifiedValues = currentValues.filter((element) => {
-    //                 return element !== e.target.value
-    //             })
-    //         }
-    //         this.setState({
-    //             [e.target.name]: modifiedValues
-    //         })
-    //     } else {
-    //         this.setState({
-    //             [e.target.name]: e.target.value
-    //         })
-    //     }
-    // };
-
     updateRadioField = (event) => {
         this.setState({
             selectedOption: event.target.value
         });
     }
 
-    // updateCheckboxField = (event) => {
-    //     this.setState({
-    //         selectedOption: event.target.value
-    //     });
-    // }
-
-    // updateCheckboxField = (event) => {
-    //     if (event.target.value == "0") {
-    //         this.setState({
-    //             [event.target.name] : 1
-    //         }) 
-    //     } else {
-    //         this.setState({
-    //             [event.target.name] : 0
-    //         })
-    //     }
-    // }
 
 
     render() {
@@ -319,11 +281,6 @@ export default class AddNew extends React.Component {
                                 </Form.Group>
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Targeted gender</Form.Label>
-                                    {/* <Form.Control
-                                        name="gender"
-                                        value={this.state.gender}
-                                        onChange={this.updateFormField}
-                                    /> */}
                                     <Form>
                                         {['radio'].map((type) => (
                                             <div value={this.state.gender}
@@ -331,11 +288,6 @@ export default class AddNew extends React.Component {
                                                 key={`inline-${type}`}
                                                 className="mb-3">
                                                 <Form.Check
-                                                    // inline
-                                                    // label="Male"
-                                                    // name="group1"
-                                                    // type={type}
-                                                    // id={`inline-${type}-1`}
                                                     inline
                                                     name="gender"
                                                     type="radio"
@@ -344,11 +296,6 @@ export default class AddNew extends React.Component {
                                                     checked={this.state.gender === "male"}
                                                     onChange={this.updateRadioField} />
                                                 <Form.Check
-                                                    // inline
-                                                    // label="Female"
-                                                    // name="group1"
-                                                    // type={type}
-                                                    // id={`inline-${type}-2`}
                                                     inline
                                                     name="gender"
                                                     type="radio"
@@ -358,11 +305,6 @@ export default class AddNew extends React.Component {
                                                     onChange={this.updateRadioField}
                                                 />
                                                 <Form.Check
-                                                    // inline
-                                                    // label="Unisex"
-                                                    // name="group1"
-                                                    // type={type}
-                                                    // id={`inline-${type}-2`}
                                                     inline
                                                     name="gender"
                                                     type="radio"

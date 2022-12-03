@@ -1,7 +1,8 @@
 import React from "react";
 import Home from "./components/Home";
-import Search from "./components/Search";
+// import Search from "./components/Search";
 import AddNew from "./components/AddNew";
+import Edit from "./components/Edit";
 
 export default class WatchRecord extends React.Component {
   state={
@@ -26,10 +27,10 @@ export default class WatchRecord extends React.Component {
            </li>
            <li className="nav-item">
              <button className="nav-link" 
-                     onClick={() => {this.setActive("search");
+                     onClick={() => {this.setActive("edit");
             }}
             >
-              Search</button>
+              Edit</button>
            </li>
            <li className="nav-item">
              <button className="nav-link"
@@ -51,10 +52,10 @@ export default class WatchRecord extends React.Component {
             <Home />
           </React.Fragment>
         );
-      } else if (this.state.active === "search") {
+      } else if (this.state.active === "edit") {
         return(
           <React.Fragment>
-            <Search />
+            <Edit />
           </React.Fragment>
         );
       } else if (this.state.active === "addnew") {
