@@ -1,0 +1,12 @@
+.logo-img {
+    height: 100px;
+}
+
+.watch-card {
+    width: 18rem;
+    flex: column;
+}
+
+.navbar {
+    background-color: white !important; 
+}

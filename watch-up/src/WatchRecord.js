@@ -1,69 +1,118 @@
 import React from "react";
-import Home from "./components/Home";
-// import Search from "./components/Search";
-import AddNew from "./components/AddNew";
-import Edit from "./components/Edit";
+import Home from "./pages/Home";
+import AddNew from "./pages/AddNew";
+import MyWatch from "./pages/MyWatch";
+import * as ReactBootstrap from 'react-bootstrap';
+import "./css/style.css";
+
 
 export default class WatchRecord extends React.Component {
-  state={
-    'active': 'home'
-  }
-  setActive = (page) => {
-    this.setState({
-      'active' : page
-    })
-  }
-    render() {
-        return <React.Fragment>
-            <div className="container">
-         <ul className="nav nav-tabs">
-           <li className="nav-item">
-             <button className="nav-link active" 
-                     aria-current="page"
-                     onClick={() => {this.setActive("home");
-            }}
-            >
-               Home</button>
-           </li>
-           <li className="nav-item">
-             <button className="nav-link" 
-                     onClick={() => {this.setActive("edit");
-            }}
-            >
-              Edit</button>
-           </li>
-           <li className="nav-item">
-             <button className="nav-link"
-                     onClick={() => {this.setActive("addnew");
-            }}
-             >
-              Add New</button>
-           </li>
+  state = {
+    active: 'home',
+    activeWatch: ''
+  };
 
-         </ul>
-         {this.renderContent()}
-       </div>
-        </React.Fragment>;
+  setActive = (page, watchId) => {
+    if (watchId) {
+      this.setState({
+        active: page,
+        activeWatch: watchId
+      })
     }
-    renderContent(){
-      if (this.state.active === "home") {
-        return(
-          <React.Fragment>
-            <Home />
-          </React.Fragment>
-        );
-      } else if (this.state.active === "edit") {
-        return(
-          <React.Fragment>
-            <Edit />
-          </React.Fragment>
-        );
-      } else if (this.state.active === "addnew") {
-        return(
-        <React.Fragment>
-          <AddNew />
-        </React.Fragment>
-        );
-      } 
+    else {
+      this.setState({
+        'active': page
+      });
     }
+  };
+
+  renderActive = () => {
+    const active = this.state.active;
+
+    if (active === "home") {
+      return (
+        <Home setActive={this.setActive} />
+      );
+    } else if (active === "addnew") {
+      return (
+        <AddNew setActive={this.setActive} />
+      );
+    } else if (active === "mywatch") {
+      return (
+        <MyWatch setActive={this.setActive} />
+      );
+    }
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <ReactBootstrap.Navbar className='navbar' collapseOnSelect  bg='light' expand='lg'>
+          <ReactBootstrap.Container fluid>
+            <ReactBootstrap.Navbar.Brand
+              className='ms-3'
+              href='#home'
+              onClick={() => {
+                this.setActive('home');
+              }}
+            >
+              <img
+                className='logo-img'
+                src={require('./images/logo.png')}
+                alt='Watch up logo'
+              />
+            </ReactBootstrap.Navbar.Brand>
+            <ReactBootstrap.Navbar.Brand
+              className='ms-3'
+              href='#home'
+            >
+              WATCH-UP
+            </ReactBootstrap.Navbar.Brand>
+            <ReactBootstrap.Navbar.Toggle
+              aria-controls='basic-navbar-nav'
+              className='me-3'
+            />
+            <ReactBootstrap.Navbar.Collapse id='basic-navbar-nav'>
+              <ReactBootstrap.Nav className="justify-content-end">
+                <ReactBootstrap.Nav.Link
+                  className={
+                    this.active === 'home' ? 'active' : ''
+                  }
+                  href='#home'
+                  onClick={() => {
+                    this.setActive('home');
+                  }}
+                >
+                 
+                </ReactBootstrap.Nav.Link>
+                <ReactBootstrap.Nav.Link
+                  className={
+                    this.active === 'addnew' ? 'active' : ''
+                  }
+                  href='#addnew'
+                  onClick={() => {
+                    this.setActive('addnew');
+                  }}
+                >
+                  WATCH-UP your watch
+                </ReactBootstrap.Nav.Link>
+                <ReactBootstrap.Nav.Link
+                  className={
+                    this.active === 'mywatch' ? 'active' : ''
+                  }
+                  href='#mywatch'
+                  onClick={() => {
+                    this.setActive('mywatch');
+                  }}
+                >
+                  My Watches
+                </ReactBootstrap.Nav.Link>
+              </ReactBootstrap.Nav>
+            </ReactBootstrap.Navbar.Collapse>
+          </ReactBootstrap.Container>
+        </ReactBootstrap.Navbar>
+        {this.renderActive()}
+      </React.Fragment>
+    );
+  }
 }
