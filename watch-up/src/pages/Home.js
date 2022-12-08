@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import "./../css/style.css";
 
 export default class Home extends React.Component {
-    url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us77.gitpod.io/";
+    url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us78.gitpod.io/";
     state = {
         data: [],
 
@@ -226,74 +226,22 @@ export default class Home extends React.Component {
                     ) : (
                         ""
                     )}
-                    <div className='d-flex'>
+                    <div className='cards d-flex'>
                         {this.state.data.map(single => (
                             <React.Fragment key={single._id}>
-                                <Card className='watch-card mt-3' >
-                                    <Card.Img variant="top" src={require('./watchOne.webp')} />
+                                <Card className='watch-card mt-5' >
+                                    {/* <Card.Img variant="top" src={require('./watchOne.webp')} />  */}
+                                    <Card.Img variant='top' src={single.image} />
                                     <Card.Body>
                                         <Card.Title>{single.model}</Card.Title>
                                         <Card.Text>
                                             {single.brand}
                                         </Card.Text>
-                                        <Button variant="primary" onClick={() => {
+                                        <Button className= "button-card" variant="primary" onClick={() => {
                                                 this.clickToDetailPage(single);
                                             }}>More details</Button>
                                     </Card.Body>
                                 </Card>
-                            </React.Fragment>
-                        ))}
-                    </div>
-
-                    <div className="row">
-                        {this.state.data.map(single => (
-                            <React.Fragment key={single._id}>
-                                <div className="card">
-                                    <div className="card-body">
-                                        <h3 className="card-title">
-                                            {single.brand}
-                                        </h3>
-                                        <h3 className="card-title">
-                                            {single.model}
-                                        </h3>
-                                        <h3 className="card-title">
-                                            {single.price}
-                                        </h3>
-                                        <h3 className="card-title">
-                                            {single.year_made}
-                                        </h3>
-                                        <h3 className="card-title">
-                                            {single.gender}
-                                        </h3>
-                                        <h3 className="card-title">
-                                            {single.image}
-                                        </h3>
-                                        <h3 className="card-title">
-                                            {single.water_resistance}
-                                        </h3>
-                                        <h3 className="card-title">
-                                            {single.glass_material}
-                                        </h3>
-                                        <h3 className="card-title">
-                                            {single.user.username}
-                                        </h3>
-                                        <button
-                                            onClick={() => {
-                                                this.clickToDetailPage(single);
-                                            }}
-                                        >More details</button>
-                                        {/* <h3 className="card-title">
-                                        {listings.strapId[0].strapMaterial}
-                                    </h3>
-                                    <h3 className="card-title">
-                                        {listings.caseId[0].caseMaterial}
-                                    </h3> */}
-                                        {/* <h3 className="card-title">
-                                        {listings.movements}
-                                    </h3>
-                                     */}
-                                    </div>
-                                </div>
                             </React.Fragment>
                         ))}
                     </div>

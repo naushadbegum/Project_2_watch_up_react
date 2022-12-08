@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 
 
 export default class AddNew extends React.Component {
-    url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us77.gitpod.io/";
+    url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us78.gitpod.io/";
 
     state = {
         brand: "",
@@ -199,7 +199,7 @@ export default class AddNew extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <section className='container-fluid d-flex flex-coloumn justify-content-center align-items-center adjust-margin-top'>
+                <section className='container-fluid d-flex flex-coloumn justify-content-center align-items-center adjust-margin-top '>
                     <div className='container mt-3 mb-5 px-2 px-md-5'>
                         <h1 className='mt-3 mb-4 mb-lg-5'>List your watch</h1>
                         <div className='new-watch-form px-5 py-3'>

@@ -2,44 +2,68 @@ import React from "react";
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 
-const url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us77.gitpod.io/";
+const url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us78.gitpod.io/";
 
 export default class Edit extends React.Component {
-    url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us77.gitpod.io/";
+    url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us78.gitpod.io/";
     state = {
-        brand: "",
-        model: "",
-        price: 0,
-        year_made: 0,
-        water_resistance: "",
-        glass_material: "",
-        movements: "",
-        image: "",
-        gender: "",
+        updateBrand: "",
+        updateModel: "",
+        updatePrice: 0,
+        update_year_made: 0,
+        update_water_resistance: "",
+        update_glass_material: "",
+        updateMovements: "",
+        updateImage: "",
+        updateGender: "",
         strapId: "",
         caseId: "",
+
 
         straps: [],
         cases: [],
         contentLoaded: false,
-    };
+        selectedWatchId: [],
+        singleWatch: [],
 
+    };
+   
     async componentDidMount() {
-        
+
         let watchlistingRequest = axios.get(url + "watch-listings");
         let strapsRequest = axios.get(url + "straps");
         let casesRequest = axios.get(url + "cases");
+        let singleWatchRequest = axios.get(url + "watch-listing/" + this.props.singleWatchId);
+        console.log(this.props.singleWatchId)
 
-        let [watchlistingResponse, strapsResponse, casesResponse] =
+        let [watchlistingResponse, strapsResponse, casesResponse, singleWatchResponse] =
             await axios.all([
                 watchlistingRequest,
                 strapsRequest,
-                casesRequest
+                casesRequest,
+                singleWatchRequest
             ]);
 
-        let watchlisting =  watchlistingResponse.data;
+        let watchlisting = watchlistingResponse.data;
         let straps = strapsResponse.data;
         let cases = casesResponse.data;
+        let single = singleWatchResponse.data[0];
+        console.log(single);
+        console.log(this.state.singleWatch);
+
+
+        this.setState({
+            updateBrand: this.state.singleWatch.brand,
+            updateModel: this.state.singleWatch.model,
+            updatePrice: this.state.singleWatch.price,
+            update_year_made: this.state.singleWatch.year_made,
+            update_water_resistance: this.state.singleWatch.water_resistance,
+            update_glass_material: this.state.singleWatch.glass_material,
+            updateMovements: this.state.singleWatch.movements,
+            updateImage: this.state.singleWatch.image,
+            updateGender: this.state.singleWatch.gender,
+        })
+        console.log(this.state.singleWatch.brand);
 
         this.setState({
             brand: watchlisting.brand,
@@ -47,14 +71,16 @@ export default class Edit extends React.Component {
             price: watchlisting.price,
             year_made: watchlisting.year_made,
             glass_material: watchlisting.glass_material,
-            movements:watchlisting.movements,
+            water_resistance: watchlisting.water_resistance,
+            movements: watchlisting.movements,
             image: watchlisting.image,
             gender: watchlisting.gender,
             strapId: straps._id,
             caseId: cases._id,
             straps: straps,
             cases: cases,
-            contentLoaded: true
+            contentLoaded: true,
+            singleWatch: single,
         });
     }
     watchUpdate = async () => {
@@ -62,52 +88,52 @@ export default class Edit extends React.Component {
 
         if (errors.length === 0) {
 
-            let requestBody ={
-            brand : this.state.brand,
-            model : this.state.model,
-            price : Number(this.state.price),
-            year_made : Number(this.state.year_made),
-            gender: this.state.gender,
-            image : this.state.image,
-            water_resistance : this.state.water_resistance,
-            glass_material : this.state.glass_material,
-            movements : this.state.movements,
-            strapId :  this.state.strapId,
-            caseId : this.state.caseId,
-        };
+            let requestBody = {
+                brand: this.state.updateBrand,
+                model: this.state.updateModel,
+                price: Number(this.state.updatePrice),
+                year_made: Number(this.state.update_year_made),
+                gender: this.state.updateGender,
+                image: this.state.updateImage,
+                water_resistance: this.state.update_water_resistance,
+                glass_material: this.state.update_glass_material,
+                movements: this.state.updateMovements,
+                strapId: this.state.strapId,
+                caseId: this.state.caseId,
+            };
 
-try {
-    await axios.put(url + 'watchlistings', requestBody);
-} catch (error) {
-    console.log(error);
-}
-this.setState({
-    errors: errors
-});
-} else {
+            try {
+                await axios.put(url + 'watch-listings/' + this.state.singleWatch._id , requestBody);
+            } catch (error) {
+                console.log(error);
+            }
+            this.setState({
+                errors: errors
+            });
+        } else {
+            this.setState({
+                errors: errors
+            });
+        }
+    };
+
+    updateFormField = (event) => {
         this.setState({
-            errors: errors
+            [event.target.name]: event.target.value
+            //model: seiko
         });
-    }
-};
+    };
 
-updateFormField = (event) => {
-    this.setState({
-        [event.target.name]: event.target.value
-        //model: seiko
-    });
-};
+    updateRadioField = (event) => {
+        this.setState({
+            selectedOption: event.target.value
+        });
+    };
 
-updateRadioField = (event) => {
-    this.setState({
-        selectedOption: event.target.value
-    });
-};
-
-validateUpdate = () => {
-    let errors = [];
-    this.state.brand.trim()
-        if (!this.state.brand || this.state.brand.length > 50 || this.state.brand === 0) {
+    validateUpdate = () => {
+        let errors = [];
+        // this.state.brand.trim()
+        if (!this.state.updateBrand || this.state.updateBrand.length > 50 || this.state.updateBrand === 0) {
             this.setState({
                 showBrandError: true
             })
@@ -116,8 +142,8 @@ validateUpdate = () => {
                 showBrandError: false
             })
         }
-        this.state.model.trim()
-        if (!this.state.model || this.state.model.length > 50 || this.state.model === 0) {
+        // this.state.model.trim()
+        if (!this.state.updateModel || this.state.updateModel.length > 50 || this.state.updateModel === 0) {
             this.setState({
                 showModelError: true
             })
@@ -128,7 +154,7 @@ validateUpdate = () => {
         }
 
         // this.state.price.trim()
-        if (!this.state.price || this.state.price <= 0 || this.state.price > 100000000000 || this.state.price === 0) {
+        if (!this.state.updatePrice || this.state.updatePrice <= 0 || this.state.updatePrice > 100000000000 || this.state.updatePrice === 0) {
             this.setState({
                 showPriceError: true
             })
@@ -138,7 +164,7 @@ validateUpdate = () => {
             })
         }
         // this.state.year_made.trim()
-        if (!this.state.year_made || this.state.year_made > 9999 || this.state.year_made === 0) {
+        if (!this.state.update_year_made || this.state.update_year_made > 9999 || this.state.update_year_made === 0) {
             this.setState({
                 showYearError: true
             })
@@ -149,7 +175,7 @@ validateUpdate = () => {
         }
 
         // this.state.image.trim()
-        if (!this.state.image || this.state.image > 300 || this.state.image === 0) {
+        if (!this.state.updateImage || this.state.updateImage> 300 || this.state.updateImage === 0) {
             this.setState({
                 showImageError: true
             })
@@ -158,7 +184,7 @@ validateUpdate = () => {
                 showImageError: false
             })
         }
-        if (!this.state.gender || this.state.username == null) {
+        if (!this.state.updateGender || this.state.updateGender == null) {
             this.setState({
                 showGenderError: true
             })
@@ -168,27 +194,8 @@ validateUpdate = () => {
             })
         }
 
-        if (!this.state.username || this.state.username.length > 100) {
-            this.setState({
-                showUserNameError: true
-            })
-        } else {
-            this.setState({
-                showUserNameError: false
-            })
-        }
-
-        if ((this.state.email.includes("@") && this.state.email.includes("."))) {
-            this.setState({
-                showEmailError: false
-            })
-        } else {
-            this.setState({
-                showEmailError: true
-            })
-        }
         return errors;
-};
+    };
 
 
     render() {
@@ -207,8 +214,8 @@ validateUpdate = () => {
                                     <Form.Control
                                         type="text"
                                         placeholder="Enter brand name"
-                                        name="brand"
-                                        value={this.state.brand}
+                                        name="updateBrand"
+                                        value={this.state.updateBrand}
                                         onChange={this.updateFormField}
                                     />
                                     {this.state.showBrandError ? (
@@ -225,8 +232,8 @@ validateUpdate = () => {
                                     <Form.Control
                                         type="text"
                                         placeholder="Enter model name"
-                                        name="model"
-                                        value={this.state.model}
+                                        name="updateModel"
+                                        value={this.state.updateModel}
                                         onChange={this.updateFormField}
                                     />
                                     {this.state.showModelError ? (
@@ -242,8 +249,8 @@ validateUpdate = () => {
                                     <Form.Control
                                         type="text"
                                         placeholder="Enter price in USD"
-                                        name="price"
-                                        value={this.state.price}
+                                        name="updatePrice"
+                                        value={this.state.updatePrice}
                                         onChange={this.updateFormField}
                                     />
                                     {this.state.showPriceError ? (
@@ -259,8 +266,8 @@ validateUpdate = () => {
                                     <Form.Control
                                         type="text"
                                         placeholder="Enter year made"
-                                        name="year_made"
-                                        value={this.state.year_made}
+                                        name="update_year_made"
+                                        value={this.state.update_year_made}
                                         onChange={this.updateFormField}
                                     />
                                     {this.state.showYearError ? (
@@ -275,34 +282,34 @@ validateUpdate = () => {
                                     <Form.Label>Targeted gender</Form.Label>
                                     <Form>
                                         {['radio'].map((type) => (
-                                            <div value={this.state.gender}
+                                            <div value={this.state.updateGender}
                                                 onChange={this.updateFormField}
                                                 key={`inline-${type}`}
                                                 className="mb-3">
                                                 <Form.Check
                                                     inline
-                                                    name="gender"
+                                                    name="updateGender"
                                                     type="radio"
                                                     label="Male"
                                                     value="male"
-                                                    checked={this.state.gender === "male"}
+                                                    checked={this.state.updateGender === "male"}
                                                     onChange={this.updateRadioField} />
                                                 <Form.Check
                                                     inline
-                                                    name="gender"
+                                                    name="updateGender"
                                                     type="radio"
                                                     label="Female"
                                                     value="female"
-                                                    checked={this.state.gender === "female"}
+                                                    checked={this.state.updateGender === "female"}
                                                     onChange={this.updateRadioField}
                                                 />
                                                 <Form.Check
                                                     inline
-                                                    name="gender"
+                                                    name="updateGender"
                                                     type="radio"
                                                     label="Unisex"
                                                     value="unisex"
-                                                    checked={this.state.gender === "unisex"}
+                                                    checked={this.state.updateGender === "unisex"}
                                                     onChange={this.updateRadioField}
                                                 />
                                                 {this.state.showGenderError ? (
@@ -322,7 +329,7 @@ validateUpdate = () => {
                                         type="text"
                                         placeholder="Enter image url"
                                         name="image"
-                                        value={this.state.image}
+                                        value={this.state.updateImage}
                                         onChange={this.updateFormField}
                                     />
                                     {this.state.showImageError ? (
@@ -341,7 +348,7 @@ validateUpdate = () => {
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Case Material</Form.Label>
                                     <Form.Select name="caseId" onChange={this.updateFormField}>
-                                    <option value='' disabled>
+                                        <option value='' disabled>
                                             --- Select strap material ---
                                         </option>
                                         {this.state.cases.map(cases => (
@@ -352,21 +359,21 @@ validateUpdate = () => {
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Strap Material</Form.Label>
                                     <Form.Select name="strapId" onChange={this.updateFormField}>
-                                    <option value='' disabled>
+                                        <option value='' disabled>
                                             --- Select strap material ---
                                         </option>
                                         {this.state.straps.map(straps => (
 
                                             <option value={straps._id}>{straps.strapMaterial}</option>
-                                            
+
                                         ))}
                                     </Form.Select>
                                 </Form.Group>
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Water Resistance</Form.Label>
                                     <Form.Select
-                                        name="water_resistance"
-                                        value={this.state.water_resistance}
+                                        name="update_water_resistance"
+                                        value={this.state.update_water_resistance}
                                         onChange={this.updateFormField}>
                                         <option value='' disabled>
                                             --- Select water resistance ---
@@ -383,8 +390,8 @@ validateUpdate = () => {
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Glass material</Form.Label>
                                     <Form.Select
-                                        name="glass_material"
-                                        value={this.state.glass_material}
+                                        name="update_glass_material"
+                                        value={this.state.update_glass_material}
                                         onChange={this.updateFormField}>
                                         <option value='' disabled>
                                             --- Select glass material ---
@@ -397,8 +404,8 @@ validateUpdate = () => {
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Movement</Form.Label>
                                     <Form.Select
-                                        name="movements"
-                                        value={this.state.movements}
+                                        name="updateMovements"
+                                        value={this.state.updateMovements}
                                         onChange={this.updateFormField}>
                                         <option value='' disabled>
                                             --- Select watch movement ---
@@ -414,46 +421,6 @@ validateUpdate = () => {
 
                                 <Form.Group className='col-lg-6 mb-3'></Form.Group>
                             </div>
-                            <h5 className='font-weight-500 mt-4'>
-                                Personal Information
-                            </h5>
-                            <div className='watch-form-group row px-3 py-3 mt-3'>
-                                <Form.Group className='col-lg-6 mb-3'>
-                                    <Form.Label>Username</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Enter username"
-                                        name="username"
-                                        value={this.state.username}
-                                        onChange={this.updateFormField}
-                                    />
-                                    {this.state.showUserNameError ? (
-                                        <Form.Text className='errorMessage'>
-                                            Enter a valid username
-                                        </Form.Text>
-                                    ) : (
-                                        ''
-                                    )}
-                                </Form.Group>
-                                <Form.Group className='col-lg-6 mb-3'>
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Enter email"
-                                        name="email"
-                                        value={this.state.email}
-                                        onChange={this.updateFormField}
-                                    />
-                                    {this.state.showEmailError ? (
-                                        <Form.Text className='errorMessage'>
-                                            Enter a valid email
-                                        </Form.Text>
-                                    ) : (
-                                        ''
-                                    )}
-                                </Form.Group>
-
-                            </div>
                         </div>
                     </div>
 
@@ -463,8 +430,8 @@ validateUpdate = () => {
                 </section>
                 <button className="btn btn-primary mt-3" onClick={() => { this.watchUpdate() }}>Update Watch</button>
             </React.Fragment>
-        
-    );
+
+        );
 
     }
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import "./../css/style.css";
 
 export default class SingleDetail extends React.Component {
 
@@ -7,16 +8,31 @@ export default class SingleDetail extends React.Component {
         selectedWatchId: [],
     };
 
+
+    // <div className="detail-container mt-3 ">
+    //                     <div className="left col-12 col-lg-8">
+    //                             <img id="watchDetailPhoto" src={single.image} alt="watchDetailPhoto" className="watchDetailPhoto"></img>
+    //                     </div>
+    //                     <div className="right col-12 col-lg-4 order-lg-first order-last">
+    //                         <h5 className="big-title font">{single.brand}</h5>
+    //                         <button onClick={this.props.changeToHomePage}>Back</button>
+    //                     </div>
+
     render() {
         return (
             <React.Fragment>
-                <h1>Watch Details</h1>
                 {this.props.singleDetailId.map((single) => (
                     <React.Fragment key={single._id}>
-                        <div className="card mt-3 ms-3">
-                            <h5 className="card-title">{single.brand}</h5>
-                            <button onClick={this.props.changeToHomePage}>Back</button>
+                        <div className="detail-container">
+                            <div className="detail-img">
+                                <img id="watchDetailPhoto" src={single.image} alt="watchDetailPhoto" className="watchDetailPhoto"></img>
+                            </div>
+                            <div className="detail-content">
+                                <h5>{single.brand}</h5>
+                                <button onClick={this.props.changeToHomePage}>Back</button>
+                            </div>
                         </div>
+
                     </React.Fragment>
                 ))
                 }
