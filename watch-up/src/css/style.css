@@ -2,6 +2,19 @@
     height: 100px;
 }
 
+#website-name{
+    font-family: 'Lora', serif;
+    font-size: 30px;
+}
+
+#nav-addnew:hover {
+    color: black;
+}
+
+#nav-mywatch:hover {
+    color: black;
+}
+
 /* watch card */
 .watch-card {
     width: 18rem;
@@ -68,5 +81,31 @@
     width: 100%; */
     max-width :600px;
     max-height:600px;
+    padding-left: 50px;
+}
+
+.button--primary{
+    background-color: #2e2e3a;
+    border-color: transparent;
+    color: white;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    width: 50%;
+    height: 50%;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.specs-table {
+    height: 20px;
+    width: 50px;
+}
+
+.specs-name {
+    height: 20px;
+}
+
+.specs-detail{
+    height: 20px;
 }
 

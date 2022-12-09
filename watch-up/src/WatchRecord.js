@@ -64,6 +64,7 @@ export default class WatchRecord extends React.Component {
             </ReactBootstrap.Navbar.Brand>
             <ReactBootstrap.Navbar.Brand
               className='ms-3'
+              id='website-name'
               href='#home'
             >
               WATCH-UP
@@ -89,6 +90,7 @@ export default class WatchRecord extends React.Component {
                   className={
                     this.active === 'addnew' ? 'active' : ''
                   }
+                  id="nav-addnew"
                   href='#addnew'
                   onClick={() => {
                     this.setActive('addnew');
@@ -100,6 +102,7 @@ export default class WatchRecord extends React.Component {
                   className={
                     this.active === 'mywatch' ? 'active' : ''
                   }
+                  id="nav-mywatch"
                   href='#mywatch'
                   onClick={() => {
                     this.setActive('mywatch');
