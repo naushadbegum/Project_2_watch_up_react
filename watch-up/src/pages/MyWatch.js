@@ -17,6 +17,9 @@ export default class MyWatch extends React.Component {
         singleWatchClicked: false,
         singleWatchObject: [],
         isLoading: false,
+
+        invalidEmail: false,
+        emailSearchSuccess: false,
     }
 
     clickToEditPage = (id) => {
@@ -64,7 +67,15 @@ export default class MyWatch extends React.Component {
     };
 
     searchMyWatch = async (e) => {
-        this.isLoading();
+        
+        if (!this.state.searchEmail.includes("@") || !this.state.searchEmail.includes(".")){
+            this.setState({
+                invalidEmail: "formatIncorrect",
+                data: [],
+                emailSearchSuccess: false
+            })
+        } else {
+            this.isLoading();
         try {
             let response = await axios.get(this.url + "watch-listings", {
                 params: {
@@ -74,14 +85,23 @@ export default class MyWatch extends React.Component {
             });
             console.log(response.data)
             this.setState({
-                data: response.data
+                data: response.data,
+                invalidEmail: false,
+                emailSearchSuccess: true,
             });
+            
             console.log(response.data);
         } catch (e) {
             console.log(e);
+            this.setState({
+                data: [],
+                invalidEmail: "emailIncorrect",
+                emailSearchSuccess: false,
+            })
         }
         this.closeLoading();
     };
+}
 
     // let 
     // showConfirmDelete = async (watchId) => {
@@ -127,11 +147,16 @@ export default class MyWatch extends React.Component {
                         Search
                     </button>
                 </div>
-                {this.state.isLoading ? (
-                    <div id="loading">Loading</div>
-                ) : (
-                    ""
-                )}
+
+                {this.state.invalidEmail ==="formatIncorrect" && <div className='mywatch-error-message'> Enter email in valid format eg. watch@gmail.com </div>}
+                {this.state.invalidEmail ==="emailIncorrect" && <div className='mywatch-error-message'> Email not found. Enter the email you used to create the watch listing.</div>}
+                {this.state.emailSearchSuccess ? 
+                // {this.state.isLoading ? (
+                //     <div id="loading">Loading</div>
+                // ) : (
+                //     ""
+                // )}
+                <React.Fragment>
                 <div className='d-flex'>
                     {this.state.data.map(single => (
                         <React.Fragment key={single._id}>
@@ -155,12 +180,18 @@ export default class MyWatch extends React.Component {
                                 </Card.Body>
                             </Card>
                         </React.Fragment>
+                        
                     ))}
+                    
                 </div>
+                </React.Fragment>
+                : ""}
+                
             </div>
+            
         </React.Fragment>
         );
-                                            }
+        }
     }
 
     render() {

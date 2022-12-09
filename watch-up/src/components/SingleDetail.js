@@ -107,15 +107,3 @@ export default class SingleDetail extends React.Component {
     }
 
 }
-
-
-{/* <table>
-<tbody>
-    <tr style="height: 20px;">
-        <td width="63" style="height:20px;">
-            Brand:</td>
-        <td width="213" style="height:20px;">
-            {single.brand}</td>
-    </tr>
-</tbody>
-</table> */}

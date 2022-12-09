@@ -69,7 +69,8 @@
 }
 
 .detail-content {
-    margin-left: 210px
+    margin-left: 210px;
+    padding-top: 50px;
 }
 
 #watchDetailPhoto {
@@ -103,6 +104,7 @@
 
 .specs-name {
     height: 20px;
+    font-weight: bold;
 }
 
 .specs-detail{
