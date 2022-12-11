@@ -3,6 +3,9 @@ import axios from 'axios';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Edit from './Edit';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "./../css/style.css";
 
 export default class MyWatch extends React.Component {
     url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us78.gitpod.io/";
@@ -43,9 +46,20 @@ export default class MyWatch extends React.Component {
     }
 
     deleteWatch = async (singleWatchId) => {
-        
+
         let response = await axios.delete(this.url + "watch-listings/" + `${singleWatchId}`)
         console.log(response);
+        const notify = () => toast.success('Your collection is deleted!', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
+        notify()
     }
 
     async componentDidMount() {
@@ -67,8 +81,8 @@ export default class MyWatch extends React.Component {
     };
 
     searchMyWatch = async (e) => {
-        
-        if (!this.state.searchEmail.includes("@") || !this.state.searchEmail.includes(".")){
+
+        if (!this.state.searchEmail.includes("@") || !this.state.searchEmail.includes(".")) {
             this.setState({
                 invalidEmail: "formatIncorrect",
                 data: [],
@@ -76,32 +90,32 @@ export default class MyWatch extends React.Component {
             })
         } else {
             this.isLoading();
-        try {
-            let response = await axios.get(this.url + "watch-listings", {
-                params: {
-                    user: this.state.user,
-                    email: this.state.searchEmail,
-                },
-            });
-            console.log(response.data)
-            this.setState({
-                data: response.data,
-                invalidEmail: false,
-                emailSearchSuccess: true,
-            });
-            
-            console.log(response.data);
-        } catch (e) {
-            console.log(e);
-            this.setState({
-                data: [],
-                invalidEmail: "emailIncorrect",
-                emailSearchSuccess: false,
-            })
-        }
-        this.closeLoading();
-    };
-}
+            try {
+                let response = await axios.get(this.url + "watch-listings", {
+                    params: {
+                        user: this.state.user,
+                        email: this.state.searchEmail,
+                    },
+                });
+                console.log(response.data)
+                this.setState({
+                    data: response.data,
+                    invalidEmail: false,
+                    emailSearchSuccess: true,
+                });
+
+                console.log(response.data);
+            } catch (e) {
+                console.log(e);
+                this.setState({
+                    data: [],
+                    invalidEmail: "emailIncorrect",
+                    emailSearchSuccess: false,
+                })
+            }
+            this.closeLoading();
+        };
+    }
 
     // let 
     // showConfirmDelete = async (watchId) => {
@@ -118,79 +132,100 @@ export default class MyWatch extends React.Component {
             } catch (e) {
                 console.log(e);
             }
-        return (
-            <React.Fragment>
-                <Edit
-                    // changeToMyWatchPage={this.changeToMyWatchPage}
-                    singleWatchId={[this.state.singleWatchId]}
-                />
-            </React.Fragment>
-        );
+            return (
+                <React.Fragment>
+                    <Edit
+                        // changeToMyWatchPage={this.changeToMyWatchPage}
+                        singleWatchId={[this.state.singleWatchId]}
+                    />
+                </React.Fragment>
+            );
         } else if (this.state.page === "mywatch") {
             return (
                 <React.Fragment>
-            <div className="container">
-                <input
-                    name="searchEmail"
-                    type="textbox"
-                    className="form-control"
-                    id="searchEmail"
-                    placeholder="Search for your watch using email"
-                    value={this.state.searchEmail}
-                    onChange={this.updateFormField}
-                />
-                <div>
-                    <button
-                        className="mt-4 btn btn-primary"
-                        onClick={this.searchMyWatch}
-                    >
-                        Search
-                    </button>
-                </div>
+                    <section className='search-page container-fluid d-flex flex-coloumn justify-content-center align-items-center adjust-margin-top '>
+                        <div className='container mt-3 mb-5 px-2 px-md-5'>
+                            <h3 className='title mt-4'>My Watch Up Collection</h3>
+                            <div className="search-container px-5 py-3">
+                                <h5 className='search-bar mt-4'>
+                                    Email
+                                </h5>
+                                <input
+                                    name="searchEmail"
+                                    type="text"
+                                    className="form-control--mywatch"
+                                    id="searchEmail"
+                                    placeholder="Search using your email"
+                                    value={this.state.searchEmail}
+                                    onChange={this.updateFormField}
+                                />
+                                <div>
+                                    <button
+                                        className="button--primary mt-4"
+                                        id="mywatch-button"
+                                        onClick={this.searchMyWatch}
+                                    >
+                                        Search
+                                    </button>
+                                </div>
 
-                {this.state.invalidEmail ==="formatIncorrect" && <div className='mywatch-error-message'> Enter email in valid format eg. watch@gmail.com </div>}
-                {this.state.invalidEmail ==="emailIncorrect" && <div className='mywatch-error-message'> Email not found. Enter the email you used to create the watch listing.</div>}
-                {this.state.emailSearchSuccess ? 
-                // {this.state.isLoading ? (
-                //     <div id="loading">Loading</div>
-                // ) : (
-                //     ""
-                // )}
-                <React.Fragment>
-                <div className='d-flex'>
-                    {this.state.data.map(single => (
-                        <React.Fragment key={single._id}>
-                            <Card className='watch-card mt-3' >
-                                {/* <Card.Img variant="top" src={require('./watchOne.webp')} />  */}
-                                <Card.Img variant='top' src={single.image} />
-                                <Card.Body>
-                                    <Card.Title>{single.model}</Card.Title>
-                                    <Card.Text>
-                                        {single.brand}
-                                    </Card.Text>
-                                    <Button variant="primary" onClick={() => {
-                                        this.clickToEditPage(single._id);
-                                    }}
-                                    >Update</Button>
-                                    <Button variant="primary" onClick={() => {
-                                                this.deleteWatch(single._id);
-                                    }}
-                                    >Delete</Button>
-                                    
-                                </Card.Body>
-                            </Card>
-                        </React.Fragment>
-                        
-                    ))}
-                    
-                </div>
+                                {this.state.invalidEmail === "formatIncorrect" && <div className='mywatch-error-message'> Enter email in valid format eg. watch@gmail.com </div>}
+                                {this.state.invalidEmail === "emailIncorrect" && <div className='mywatch-error-message'> Email not found. Enter the email you used to create the watch listing.</div>}
+                                {this.state.emailSearchSuccess ?
+                                    // {this.state.isLoading ? (
+                                    //     <div id="loading">Loading</div>
+                                    // ) : (
+                                    //     ""
+                                    // )}
+                                    <React.Fragment>
+                                        <div className='d-flex'>
+                                            {this.state.data.map(single => (
+                                                <React.Fragment key={single._id}>
+                                                    <Card className='watch-card mt-3' >
+                                                        {/* <Card.Img variant="top" src={require('./watchOne.webp')} />  */}
+                                                        <Card.Img variant='top' src={single.image} />
+                                                        <Card.Body>
+                                                            <Card.Title>{single.model}</Card.Title>
+                                                            <Card.Text>
+                                                                {single.brand}
+                                                            </Card.Text>
+                                                            <Button variant="primary" onClick={() => {
+                                                                this.clickToEditPage(single._id);
+                                                            }}
+                                                            >Update</Button>
+                                                            <Button variant="primary" onClick={() => {
+                                                                this.deleteWatch(single._id);
+                                                            }}
+                                                            >Delete</Button>
+                                                            <ToastContainer
+                                                                position="top-center"
+                                                                autoClose={5000}
+                                                                hideProgressBar
+                                                                newestOnTop={false}
+                                                                closeOnClick
+                                                                rtl={false}
+                                                                pauseOnFocusLoss
+                                                                draggable
+                                                                pauseOnHover
+                                                                theme="light"
+                                                            />
+
+                                                        </Card.Body>
+                                                    </Card>
+                                                </React.Fragment>
+
+                                            ))}
+
+                                        </div>
+                                    </React.Fragment>
+                                    : ""}
+
+                            </div>
+                        </div>
+                    </section>
+
                 </React.Fragment>
-                : ""}
-                
-            </div>
-            
-        </React.Fragment>
-        );
+            );
         }
     }
 

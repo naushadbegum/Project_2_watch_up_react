@@ -1,6 +1,12 @@
 import React from "react";
 import axios from "axios";
 import Form from 'react-bootstrap/Form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import "./../css/style.css";
+import "./../App.css";
+import Button from 'react-bootstrap/Button';
+
 // import Modal from 'react-bootstrap/Modal'
 // import Button from 'react-bootstrap/Button'
 
@@ -176,6 +182,19 @@ export default class AddNew extends React.Component {
 
             })
             console.log(response)
+
+            const notify = () => toast.success('Congratulations! Your watch added to our collection ❤️ ', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
+
+            notify()
         } catch (e) {
             console.log(e);
         }
@@ -199,17 +218,18 @@ export default class AddNew extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <section className='container-fluid d-flex flex-coloumn justify-content-center align-items-center adjust-margin-top '>
+                <section className='add-new container-fluid d-flex flex-coloumn justify-content-center align-items-center adjust-margin-top '>
                     <div className='container mt-3 mb-5 px-2 px-md-5'>
-                        <h1 className='mt-3 mb-4 mb-lg-5'>List your watch</h1>
+                        <h3 className='title mt-4'>Watch up your watch</h3>
                         <div className='new-watch-form px-5 py-3'>
-                            <h5 className='font-weight-500 mt-4'>
+                            <h5 className='add-specs font-weight-500 mt-4'>
                                 General Information
                             </h5>
                             <div className='watch-form-group row px-3 py-3 mt-3'>
-                                <Form.Group className='col-lg-6 mb-3'>
+                                <Form.Group className='add-detail col-lg-6 mb-3'>
                                     <Form.Label>Brand</Form.Label>
                                     <Form.Control
+                                        className="category"
                                         type="text"
                                         placeholder="Enter brand name"
                                         name="brand"
@@ -339,14 +359,14 @@ export default class AddNew extends React.Component {
                                     )}
                                 </Form.Group>
                             </div>
-                            <h5 className='font-weight-500 mt-4'>
+                            <h5 className='add-specs font-weight-500 mt-4'>
                                 Case and Strap Information
                             </h5>
                             <div className='watch-form-group row px-3 py-3 mt-3'>
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Case Material</Form.Label>
                                     <Form.Select name="caseId" onChange={this.updateFormField}>
-                                    <option value='' disabled>
+                                        <option value='' disabled>
                                             --- Select strap material ---
                                         </option>
                                         {this.state.cases.map(cases => (
@@ -357,13 +377,13 @@ export default class AddNew extends React.Component {
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Strap Material</Form.Label>
                                     <Form.Select name="strapId" onChange={this.updateFormField}>
-                                    <option value='' disabled>
+                                        <option value='' disabled>
                                             --- Select strap material ---
                                         </option>
                                         {this.state.straps.map(straps => (
 
                                             <option value={straps._id}>{straps.strapMaterial}</option>
-                                            
+
                                         ))}
                                     </Form.Select>
                                 </Form.Group>
@@ -419,7 +439,7 @@ export default class AddNew extends React.Component {
 
                                 <Form.Group className='col-lg-6 mb-3'></Form.Group>
                             </div>
-                            <h5 className='font-weight-500 mt-4'>
+                            <h5 className='add-specs font-weight-500 mt-4'>
                                 Personal Information
                             </h5>
                             <div className='watch-form-group row px-3 py-3 mt-3'>
@@ -459,14 +479,29 @@ export default class AddNew extends React.Component {
                                 </Form.Group>
 
                             </div>
+                            <div className = 'd-flex justify-content-center'>
+                <Button className="button--primary mt-4" type='addnew' onClick={this.addNew.bind(this)}>I'm ready to Watch Up!</Button>
+                <ToastContainer position="top-center"
+                    autoClose={5000}
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light" />
+                </div>
                         </div>
                     </div>
 
                     <div>
 
                     </div>
-                </section>
-                <button className="btn btn-primary mt-3" onClick={this.addNew.bind(this)}>Add new watch</button>
+                    </section>
+                
+                
+                
             </React.Fragment>
         );
     }

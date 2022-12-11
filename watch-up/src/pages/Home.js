@@ -5,6 +5,7 @@ import SingleDetail from "../components/SingleDetail";
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import "./../css/style.css";
+import Form from 'react-bootstrap/Form';
 
 export default class Home extends React.Component {
     url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us78.gitpod.io/";
@@ -16,6 +17,8 @@ export default class Home extends React.Component {
         searchModel: "",
         searchMovements: "",
         searchGender: "",
+        searchGlassMaterial: "",
+
 
         page: "home",
         singleDetailId: null,
@@ -81,6 +84,7 @@ export default class Home extends React.Component {
                     model: this.state.searchModel,
                     movements: this.state.searchMovements,
                     gender: this.state.searchGender,
+                    glass_material: this.state.glass_material,
                 },
             });
             this.setState({
@@ -114,7 +118,7 @@ export default class Home extends React.Component {
             }
             return (
                 <React.Fragment>
-                    <h1>Watch Details</h1>
+                    <h3 className="title">Watch Details</h3>
                     <SingleDetail
                         changeToHomePage={this.changeToHomePage}
                         singleDetailId={[this.state.singleDetailId]}
@@ -124,127 +128,150 @@ export default class Home extends React.Component {
         } else if (this.state.page === "home") {
             return (
                 <React.Fragment>
-                    <h1>Home</h1>
-                    <div className="container mt-3">
-                        <div className="container mt-3 mb-5 px-2 px-md-5" id="searchContainer">
-                            <div className="container">
-                                <h5>Brand Name</h5>
-                                <input
-                                    name="searchBrand"
-                                    type="textbox"
-                                    className="form-control"
-                                    id="searchBrand"
-                                    placeholder="Search for watch brand"
-                                    value={this.state.searchBrand}
-                                    onChange={this.updateFormField}
-                                />
-                            </div>
-                            <div className="container mt-3">
-                                <h5>Model name</h5>
-                                <input
-                                    name="searchModel"
-                                    type="textbox"
-                                    className="form-control"
-                                    id="searchModel"
-                                    placeholder="Search for watch model"
-                                    value={this.state.searchModel}
-                                    onChange={this.updateFormField}
-                                />
-                            </div>
+                    <div className="banner"></div>
+                    <section className='home container-fluid d-flex flex-coloumn justify-content-center align-items-center adjust-margin-top '>
+                        <div className='container mt-3 mb-5 px-2 px-md-5'>
+                            <h3 className='title mt-4'>Explore our collection</h3>
+                            <div className='px-5 py-3'>
+                                <div className="container mt-3 mb-5 px-2 px-md-5" id="searchContainer">
+                                    <Form.Group className="container col-lg-6 mb-3">
+                                        <Form.Label>Brand</Form.Label>
+                                        <Form.Control
+                                            name="searchBrand"
+                                            type="text"
+                                            className="form-control"
+                                            id="searchBrand"
+                                            placeholder="Search by watch brand"
+                                            value={this.state.searchBrand}
+                                            onChange={this.updateFormField}
+                                        />
+                                    </Form.Group>
+                                    <Form.Group className="container col-lg-6 mb-3">
+                                        <Form.Label>Model</Form.Label>
+                                        <Form.Control
+                                            name="searchModel"
+                                            type="text"
+                                            className="form-control"
+                                            id="searchModel"
+                                            placeholder="Search for watch model"
+                                            value={this.state.searchModel}
+                                            onChange={this.updateFormField}
+                                        />
+                                    </Form.Group>
 
-                            <div className="container mt-3">
-                                <h5>Gender</h5>
-                                <div className="form-check form-check-inline">
-                                    <input
-                                        className="form-check-input"
-                                        type="radio"
-                                        name="searchGender"
-                                        id="searchGender"
-                                        value="male"
-                                        checked={this.state.searchGender === "male"}
-                                        onChange={this.updateFormField}
-                                    />
-                                    <label className="form-check-label">Male</label>
+                                    <Form.Group className='container col-lg-6 mb-3'>
+                                        <Form.Label>Targeted gender</Form.Label>
+                                        <Form className="form-check form-check-inline">
+                                            <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name="searchGender"
+                                                id="searchGender"
+                                                value="male"
+                                                checked={this.state.searchGender === "male"}
+                                                onChange={this.updateFormField}
+                                            />
+                                            <label className="form-check-label">Male</label>
+                                        </Form>
+                                        <Form className="form-check form-check-inline">
+                                            <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name="searchGender"
+                                                id="searchGender"
+                                                value="female"
+                                                checked={this.state.searchGender === "female"}
+                                                onChange={this.updateFormField}
+                                            />
+                                            <label className="form-check-label">Female</label>
+                                        </Form>
+                                        <Form className="form-check form-check-inline">
+                                            <input
+                                                className="form-check-input"
+                                                type="radio"
+                                                name="searchGender"
+                                                id="searchGender"
+                                                value="unisex"
+                                                checked={this.state.searchGender === "unisex"}
+                                                onChange={this.updateFormField}
+                                            />
+                                            <label className="form-check-label">Unisex</label>
+                                        </Form>
+                                    </Form.Group>
+                                    <Form.Group className='container col-lg-6 mb-3'>
+                                        <Form.Label>Movement</Form.Label>
+                                        <Form.Select
+                                            className="form-select inputbox"
+                                            name="searchMovements"
+                                            onChange={this.updateFormField}
+                                            value={this.state.searchMovements}
+                                        >
+                                            <option value='' disabled>
+                                                --- Search by watch movement ---
+                                            </option>
+                                            <option value="mechanical">Mechanical</option>
+                                            <option value="automatic">Automatic</option>
+                                            <option value="quartz">Quartz</option>
+                                            <option value="smartwatch">Smartwatch</option>
+                                            <option value="hybridSmartwatch">Hybrid Smartwatch</option>
+                                            <option value="solarpowered">Solar-powered</option>
+                                        </Form.Select>
+                                    </Form.Group>
+                                    <Form.Group className='container col-lg-6 mb-3'>
+                                    <Form.Label>Glass material</Form.Label>
+                                    <Form.Select
+                                        name="glass_material"
+                                        value={this.searchGlassMaterial}
+                                        onChange={this.updateFormField}>
+                                        <option value='' disabled>
+                                            --- Select glass material ---
+                                        </option>
+                                        <option value="acrylic crystal">Acrylic Crystal</option>
+                                        <option value="mineral crystal">Mineral Crystal</option>
+                                        <option value="sapphire crystal">Sapphire Crystal</option>
+                                    </Form.Select>
+                                </Form.Group>
                                 </div>
-                                <div className="form-check form-check-inline">
-                                    <input
-                                        className="form-check-input"
-                                        type="radio"
-                                        name="searchGender"
-                                        id="searchGender"
-                                        value="female"
-                                        checked={this.state.searchGender === "female"}
-                                        onChange={this.updateFormField}
-                                    />
-                                    <label className="form-check-label">Female</label>
-                                </div>
-                                <div className="form-check form-check-inline">
-                                    <input
-                                        className="form-check-input"
-                                        type="radio"
-                                        name="searchGender"
-                                        id="searchGender"
-                                        value="unisex"
-                                        checked={this.state.searchGender === "unisex"}
-                                        onChange={this.updateFormField}
-                                    />
-                                    <label className="form-check-label">Unisex</label>
-                                </div>
-                            </div>
-                            <div className="container mt-3">
-                                <h5>Movement</h5>
-                                <select
-                                    className="form-select inputbox"
-                                    name="searchMovements"
-                                    onChange={this.updateFormField}
-                                    value={this.state.searchMovements}
-                                >
-                                    <option value='' disabled>
-                                        --- Select watch movement ---
-                                    </option>
-                                    <option value="mechanical">Mechanical</option>
-                                    <option value="automatic">Automatic</option>
-                                    <option value="quartz">Quartz</option>
-                                    <option value="smartwatch">Smartwatch</option>
-                                    <option value="hybridSmartwatch">Hybrid Smartwatch</option>
-                                    <option value="solarpowered">Solar-powered</option>
-                                </select>
-                            </div>
+                                <div className='d-flex justify-content-center'>
+                                    <Button
+                                        className="button--primary mt-4"
+                                        onClick={this.filterSearch}
+                                    >
+                                        Explore
+                                    </Button>
 
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <button
-                                className="mt-4 btn btn-primary"
-                                onClick={this.filterSearch}
-                            >
-                                Search
-                            </button>
-                        </div>
-                    </div>
-                    {this.state.isLoading ? (
-                        <div id="loading">Loading</div>
-                    ) : (
-                        ""
-                    )}
-                    <div className='cards d-flex'>
-                        {this.state.data.map(single => (
-                            <React.Fragment key={single._id}>
-                                <Card className='watch-card mt-5' >
-                                    {/* <Card.Img variant="top" src={require('./watchOne.webp')} />  */}
-                                    <Card.Img variant='top' src={single.image} />
-                                    <Card.Body>
-                                        <Card.Title>{single.model}</Card.Title>
-                                        <Card.Text>
-                                            {single.brand}
-                                        </Card.Text>
-                                        <Button className= "button-card" variant="primary" onClick={() => {
+                    </section >
+                    {
+                        this.state.isLoading ? (
+                            <div id="loading">Loading</div>
+                        ) : (
+                            ""
+                        )
+                    }
+                    < div className='cards d-flex' >
+                        {
+                            this.state.data.map(single => (
+                                <React.Fragment key={single._id}>
+                                    <Card className='watch-card mt-5' >
+                                        {/* <Card.Img variant="top" src={require('./watchOne.webp')} />  */}
+                                        <Card.Img variant='top' src={single.image} />
+                                        <Card.Body className="card_info">
+                                            <Card.Title>{single.model}</Card.Title>
+                                            <Card.Text>
+                                                {single.brand}
+                                            </Card.Text>
+                                            <Button className="button--primary-card" variant="primary" onClick={() => {
                                                 this.clickToDetailPage(single);
                                             }}>More details</Button>
-                                    </Card.Body>
-                                </Card>
-                            </React.Fragment>
-                        ))}
-                    </div>
+                                        </Card.Body>
+                                    </Card>
+                                </React.Fragment>
+                            ))
+                        }
+                    </div >
                 </React.Fragment >
             );
         }

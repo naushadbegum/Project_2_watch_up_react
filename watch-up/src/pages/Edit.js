@@ -1,6 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us78.gitpod.io/";
 
@@ -27,7 +28,7 @@ export default class Edit extends React.Component {
         singleWatch: [],
 
     };
-   
+
     async componentDidMount() {
 
         let watchlistingRequest = axios.get(url + "watch-listings");
@@ -103,7 +104,7 @@ export default class Edit extends React.Component {
             };
 
             try {
-                await axios.put(url + 'watch-listings/' + this.state.singleWatch._id , requestBody);
+                await axios.put(url + 'watch-listings/' + this.state.singleWatch._id, requestBody);
             } catch (error) {
                 console.log(error);
             }
@@ -175,7 +176,7 @@ export default class Edit extends React.Component {
         }
 
         // this.state.image.trim()
-        if (!this.state.updateImage || this.state.updateImage> 300 || this.state.updateImage === 0) {
+        if (!this.state.updateImage || this.state.updateImage > 300 || this.state.updateImage === 0) {
             this.setState({
                 showImageError: true
             })
@@ -201,17 +202,18 @@ export default class Edit extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <section className='container-fluid d-flex flex-coloumn justify-content-center align-items-center adjust-margin-top'>
+                <section className='edit-page container-fluid d-flex flex-coloumn justify-content-center align-items-center adjust-margin-top'>
                     <div className='container mt-3 mb-5 px-2 px-md-5'>
-                        <h1 className='mt-3 mb-4 mb-lg-5'>Edit your watch</h1>
+                        <h3 className='title mt-3 mb-4 mb-lg-5'>Update your watch details</h3>
                         <div className='new-watch-form px-5 py-3'>
-                            <h5 className='font-weight-500 mt-4'>
+                            <h5 className='edit-specs font-weight-500 mt-4'>
                                 General Information
                             </h5>
                             <div className='watch-form-group row px-3 py-3 mt-3'>
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Brand</Form.Label>
                                     <Form.Control
+                                        className="form-control--edit"
                                         type="text"
                                         placeholder="Enter brand name"
                                         name="updateBrand"
@@ -230,6 +232,7 @@ export default class Edit extends React.Component {
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Model</Form.Label>
                                     <Form.Control
+                                        className="form-control--edit"
                                         type="text"
                                         placeholder="Enter model name"
                                         name="updateModel"
@@ -247,6 +250,7 @@ export default class Edit extends React.Component {
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Price</Form.Label>
                                     <Form.Control
+                                        className="form-control--edit"
                                         type="text"
                                         placeholder="Enter price in USD"
                                         name="updatePrice"
@@ -264,6 +268,7 @@ export default class Edit extends React.Component {
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Year</Form.Label>
                                     <Form.Control
+                                        className="form-control--edit"
                                         type="text"
                                         placeholder="Enter year made"
                                         name="update_year_made"
@@ -326,6 +331,7 @@ export default class Edit extends React.Component {
                                 <Form.Group className='col-lg-6 mb-3'>
                                     <Form.Label>Image URL</Form.Label>
                                     <Form.Control
+                                        className="form-control--edit"
                                         type="text"
                                         placeholder="Enter image url"
                                         name="image"
@@ -341,7 +347,7 @@ export default class Edit extends React.Component {
                                     )}
                                 </Form.Group>
                             </div>
-                            <h5 className='font-weight-500 mt-4'>
+                            <h5 className='edit-specs font-weight-500 mt-4'>
                                 Case and Strap Information
                             </h5>
                             <div className='watch-form-group row px-3 py-3 mt-3'>
@@ -418,8 +424,9 @@ export default class Edit extends React.Component {
                                         <option value="solarpowered">Solar-powered</option>
                                     </Form.Select>
                                 </Form.Group>
-
-                                <Form.Group className='col-lg-6 mb-3'></Form.Group>
+                            </div>
+                            <div className='d-flex justify-content-center'>
+                                <Button className="button--primary mt-4" type='edit' onClick={() => { this.watchUpdate() }}>I'm ready to update!</Button>
                             </div>
                         </div>
                     </div>
@@ -428,7 +435,7 @@ export default class Edit extends React.Component {
 
                     </div>
                 </section>
-                <button className="btn btn-primary mt-3" onClick={() => { this.watchUpdate() }}>Update Watch</button>
+
             </React.Fragment>
 
         );

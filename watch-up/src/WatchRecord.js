@@ -47,44 +47,34 @@ export default class WatchRecord extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <ReactBootstrap.Navbar className='navbar' collapseOnSelect  bg='light' expand='lg'>
+        <ReactBootstrap.Navbar className='navbar' collapseOnSelect sticky='top' bg='light' expand='lg'>
           <ReactBootstrap.Container fluid>
             <ReactBootstrap.Navbar.Brand
-              className='ms-3'
+              className='navbar-brand ms-3'
               href='#home'
               onClick={() => {
                 this.setActive('home');
               }}
             >
-              <img
-                className='logo-img'
-                src={require('./images/logo.png')}
-                alt='Watch up logo'
-              />
-            </ReactBootstrap.Navbar.Brand>
-            <ReactBootstrap.Navbar.Brand
-              className='ms-3'
-              id='website-name'
-              href='#home'
-            >
-              WATCH-UP
+              Watch Up
             </ReactBootstrap.Navbar.Brand>
             <ReactBootstrap.Navbar.Toggle
               aria-controls='basic-navbar-nav'
-              className='me-3'
+              className='navbar-toggler ms-3'
             />
             <ReactBootstrap.Navbar.Collapse id='basic-navbar-nav'>
-              <ReactBootstrap.Nav className="justify-content-end">
+              <ReactBootstrap.Nav className="navbar-toggler-mobile ms-auto mb-2 mb-lg-0">
                 <ReactBootstrap.Nav.Link
                   className={
                     this.active === 'home' ? 'active' : ''
                   }
+                  id="nav-home"
                   href='#home'
                   onClick={() => {
                     this.setActive('home');
                   }}
                 >
-                 
+                 Home
                 </ReactBootstrap.Nav.Link>
                 <ReactBootstrap.Nav.Link
                   className={
@@ -96,7 +86,7 @@ export default class WatchRecord extends React.Component {
                     this.setActive('addnew');
                   }}
                 >
-                  WATCH-UP your watch
+                  Add
                 </ReactBootstrap.Nav.Link>
                 <ReactBootstrap.Nav.Link
                   className={

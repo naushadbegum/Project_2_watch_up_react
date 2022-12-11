@@ -95,7 +95,7 @@ export default class SingleDetail extends React.Component {
                                         </tr>
                                     </tbody>
                                 </table>
-                                <button onClick={this.props.changeToHomePage} className="button--primary">Back</button>
+                                <button onClick={this.props.changeToHomePage} className="button--primary">Back to Home page</button>
                             </div>
                         </div>
 

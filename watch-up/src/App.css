@@ -1,8 +1,14 @@
 input[type=text] {
     background: transparent;
-    border: none;
-    border-bottom: 2px solid #000000;
+    border: 0 !important;;
+    border-bottom: 2px solid #000000 !important;
+    color: white!important;
+    display: block;
     border-radius: 0rem;
+    outline-width: 0 !important;
+    outline: none !important;
+    box-shadow: none;
+    letter-spacing: 0.1rem;
   }
 
 .form-control {
@@ -10,4 +16,13 @@ input[type=text] {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border: 0;
+    box-shadow: none;
+    
 }
+
+/* @font-face {
+  font-family: "myFont";
+  font-weight: 900;
+  src: url('./fonts/romans.otf') format('opentype');
+} */
