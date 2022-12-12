@@ -327,3 +327,7 @@
 .edit-specs {
     color: #fff;
 }
+
+.errorMessage {
+    color: white;
+}

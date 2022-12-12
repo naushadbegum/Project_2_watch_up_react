@@ -49,7 +49,7 @@ export default class MyWatch extends React.Component {
 
         let response = await axios.delete(this.url + "watch-listings/" + `${singleWatchId}`)
         console.log(response);
-        const notify = () => toast.success('Your collection is deleted!', {
+        const notify = () => toast.success('Your collection is deleted! It will not be in the Home page anymore!', {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: true,

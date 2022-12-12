@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "./../css/style.css";
 
 const url = "https://project-2-watchup.onrender.com";
 
@@ -109,72 +110,72 @@ export default class Edit extends React.Component {
         });
     };
 
-    validateUpdate = () => {
-        let errors = [];
-        // this.state.brand.trim()
-        if (!this.state.updateBrand || this.state.updateBrand.length > 50 || this.state.updateBrand === 0) {
-            this.setState({
-                showBrandError: true
-            })
-        } else {
-            this.setState({
-                showBrandError: false
-            })
-        }
-        // this.state.model.trim()
-        if (!this.state.updateModel || this.state.updateModel.length > 50 || this.state.updateModel === 0) {
-            this.setState({
-                showModelError: true
-            })
-        } else {
-            this.setState({
-                showModelError: false
-            })
-        }
+    // validateUpdate = () => {
+    //     let errors = [];
+    //     // this.state.brand.trim()
+    //     if (!this.state.updateBrand || this.state.updateBrand.length > 50 || this.state.updateBrand === 0) {
+    //         this.setState({
+    //             showBrandError: true
+    //         })
+    //     } else {
+    //         this.setState({
+    //             showBrandError: false
+    //         })
+    //     }
+    //     // this.state.model.trim()
+    //     if (!this.state.updateModel || this.state.updateModel.length > 50 || this.state.updateModel === 0) {
+    //         this.setState({
+    //             showModelError: true
+    //         })
+    //     } else {
+    //         this.setState({
+    //             showModelError: false
+    //         })
+    //     }
 
-        // this.state.price.trim()
-        if (!this.state.updatePrice || this.state.updatePrice <= 0 || this.state.updatePrice > 100000000000 || this.state.updatePrice === 0) {
-            this.setState({
-                showPriceError: true
-            })
-        } else {
-            this.setState({
-                showPriceError: false
-            })
-        }
-        // this.state.year_made.trim()
-        if (!this.state.update_year_made || this.state.update_year_made > 9999 || this.state.update_year_made === 0) {
-            this.setState({
-                showYearError: true
-            })
-        } else {
-            this.setState({
-                showYearError: false
-            })
-        }
+    //     // this.state.price.trim()
+    //     if (!this.state.updatePrice || this.state.updatePrice <= 0 || this.state.updatePrice > 100000000000 || this.state.updatePrice === 0) {
+    //         this.setState({
+    //             showPriceError: true
+    //         })
+    //     } else {
+    //         this.setState({
+    //             showPriceError: false
+    //         })
+    //     }
+    //     // this.state.year_made.trim()
+    //     if (!this.state.update_year_made || this.state.update_year_made > 9999 || this.state.update_year_made === 0) {
+    //         this.setState({
+    //             showYearError: true
+    //         })
+    //     } else {
+    //         this.setState({
+    //             showYearError: false
+    //         })
+    //     }
 
-        // this.state.image.trim()
-        if (!this.state.updateImage || this.state.updateImage > 300 || this.state.updateImage === 0) {
-            this.setState({
-                showImageError: true
-            })
-        } else {
-            this.setState({
-                showImageError: false
-            })
-        }
-        if (!this.state.updateGender || this.state.updateGender == null) {
-            this.setState({
-                showGenderError: true
-            })
-        } else {
-            this.setState({
-                showGenderError: false
-            })
-        }
+    //     // this.state.image.trim()
+    //     if (!this.state.updateImage || this.state.updateImage > 300 || this.state.updateImage === 0) {
+    //         this.setState({
+    //             showImageError: true
+    //         })
+    //     } else {
+    //         this.setState({
+    //             showImageError: false
+    //         })
+    //     }
+    //     if (!this.state.updateGender || this.state.updateGender == null) {
+    //         this.setState({
+    //             showGenderError: true
+    //         })
+    //     } else {
+    //         this.setState({
+    //             showGenderError: false
+    //         })
+    //     }
 
-        return errors;
-    };
+    //     return errors;
+    // };
 
     watchUpdate = async () => {
         if (!this.state.updateBrand || this.state.updateBrand.length > 50 || this.state.updateBrand === 0) {
@@ -252,7 +253,7 @@ export default class Edit extends React.Component {
                 strapId: this.state.strapId,
                 caseId: this.state.caseId,
             })
-            const notify = () => toast.success('Congratulations! Your watch added to our collection ❤️ ', {
+            const notify = () => toast.success('We have updated the watch collection! You can view in the Home page ', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: true,

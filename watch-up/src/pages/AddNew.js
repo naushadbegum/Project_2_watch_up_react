@@ -167,7 +167,7 @@ export default class AddNew extends React.Component {
                 caseId  : this.state.caseId,
 
             })
-            const notify = () => toast.success('Congratulations! Your watch added to our collection ❤️ ', {
+            const notify = () => toast.success('Congratulations! Your watch added to our collection ❤️ Check out our Home page', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: true,

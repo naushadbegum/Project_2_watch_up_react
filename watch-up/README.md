@@ -27,7 +27,7 @@ The users of WATCH UP are mostly veteran watch collectors, watch enthusiasts and
 
 ![Screenshot of color scheme](./src/images/watchup-scheme.png)
 
-The color scheme chosen revolves around black, grey and tan. As watches are usually dull in colour, to put more focus on the watches rather than the bakcground, dull colours were used for the application. Green was only used for the title of the application to make name stand out and also complements the banner. 
+The color scheme chosen revolves around black, grey and tan. As watches are usually dull in colour, to put more focus on the watches rather than the bakcground, dull colours were used for the application. Green was only used for the title of the application to make it stand out and the color also complements the banner. 
 
 #### Fonts
 
@@ -40,10 +40,10 @@ The color scheme chosen revolves around black, grey and tan. As watches are usua
 
 | Features | Description |
 | ----------- | ----------- |
-| Search parks by name and state | These features allow the user to select the state and search based on the name of the park. This will be convenient for users as there are many national parks in the USA. Searching by states helps to narrow down the search.|
-| View Campgrounds in the selected state | Users are able to view all the campgrounds in every state and click on the markers. The popup from the marker will provide photo and the address which is very important for travellers. |
-| View Parking Lots in the selected state | Users are able to view all the parking lots in every state and click on the markers. The popup from the marker will provide information about the parking lots. It will provide information such as the number of cars can be parked and also the type of cars that can be parked.|
-| View Convenience stores in the selected state | Users are able to view all the covenience within 10km radius of the map view. The markers will show the name of the shop. |
+| Search from the watch collection | The users can search by brand, model, movement, glass material and gender. These features will help users to narrow down the collection and view more details of the watch they are intereted in. |
+| Add watch to the watch collection | Users are able to add their watch to the watch collection by filling up the form. All the fields are required and error message will be prompted if the data is incorrect. |
+| Update watch information | Users are able to search for their email and update their watch information. |
+| Delete watch from the watch collection | Users are able to search for their email and delete their watch from the collection.|
 ---
 
 ### Structure and Skeleton
@@ -60,22 +60,22 @@ An Express server is set up and deployed to [render](https://www.render.com/), w
 
 ## Limitations and Future Implementations
 
-1. Design a more user friendly search engine
+1. Interaction between collector and user is limited
     - Current limitation : 
-        - The current search feature can only handle queries that match the park names and in that particular state. Users need to key in the park name correctly. 
+        - There is no platform for the users to add comments or post questions to the watch collector.
     - Future implementation : 
-        - Suggestions can be given while the user is typing and especially if user has typo errors in the query 
-2. Adding hiking trials for the parks
+        - Review section can be added below the details so users can add comments and collectors can reply as well if a question is posted. 
+2.  Connect to Home page 
     - Current limitation :
-        - The website provides information such as photo, address, campgrounds and parking lots of the parks based on the information from nps.gov.
+        - After delete, update and adding it remains in the same page. So the UI UX is affected. 
     - Future implementation :
-        - Hiking trials based on state can be added to the map. This will be useful not just for hikers but also for tourists who are visiting for the first time as well. 
-3. Separate the Guide tab without the need to 
-    - Current limitation : 
-         - User needs to select a state in the dropdown list before clicking on the campgrounds, parking lots and convinience stores. 
-    - Future implementation :
-        - Dropdown list can be added to the guide tab as well so that users can select from the tab and click on campgrounds, parking lots and convinience stores.  
+        - After performing the action, the page should go to the home page.
 
+3. Search page validation
+    - Current limitation : 
+        - Currently, if the user types a search that is not in the collection, nothing shows up.  
+    - Future implementation :
+        - Validation can be added to say that there is no search results for the selected search.
 ---
 
 ## Technologies Used
