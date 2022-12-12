@@ -46,6 +46,18 @@ The color scheme chosen revolves around black, grey and tan. As watches are usua
 | View Convenience stores in the selected state | Users are able to view all the covenience within 10km radius of the map view. The markers will show the name of the shop. |
 ---
 
+### Structure and Skeleton
+
+#### Database
+![ERD Diagram](./images/ERD_watchup.png)
+
+Entity-Relationship Diagram (ERD) is drawn to demostrate the various relationships between entities for the website prior to modelling the database in MongoDB.
+
+An Express server is set up and deployed to [Heroku](https://www.heroku.com/), where API endpoints are accessible via the base URL at [https://coffeetalk-api.herokuapp.com/](https://coffeetalk-api.herokuapp.com/).
+
+#### Wireframes
+[Wireframes](./images/watchup_wireframe.pdf)
+
 ## Limitations and Future Implementations
 
 1. Design a more user friendly search engine
@@ -73,19 +85,43 @@ The color scheme chosen revolves around black, grey and tan. As watches are usua
 
 ## Technologies Used
 
+### Backend
+
+1. Javascript
+
+2. [Express](https://expressjs.com/)
+
+3. [MongoDB Node Driver](https://www.mongodb.com/docs/drivers/node/current/)
+    - To communicate with MongoDB database
+
+4. [cors](https://www.npmjs.com/package/cors)
+    - Middleware to enable Cross-Origin Resource Sharing (CORS)
+
+5. [dotenv](https://www.npmjs.com/package/dotenv)
+    - To allow loading of environment variables from .env file
+
+6. [yup](https://www.npmjs.com/package/yup)
+    - For validating the data
+---
+
+### Frontend
+
 1. HTML
 
 2. CSS
 
-3. [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) 
-    - Used for buttons, tabs and offcanvas of website
+3. Javascript
 
-4. JavaScript
+4. [React](https://reactjs.org/)
 
-5. [Axios](https://github.com/axios/axios)
-    - Used to fetch data from APIs used by website
+5. [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) 
+    - Used for styling website
 
+6. [React Bootstrap](https://react-bootstrap.github.io/)
+    - Used for styling website
 
+7. [Axios](https://github.com/axios/axios)
+    - Used to communicate with Express server to create, read, update and delete data in database
 ---
 
 ## Testing
@@ -97,22 +133,16 @@ The test cases can be found [here](test-cases.pdf).
 
 ## Deployment
 
-The website is hosted using [Github](https://www.github.com/), deployed directly from the main branch of the Github repository.
+The website is hosted using [render](https://www.render.com/), deployed directly from the main branch of the Github repository.
 
 ---
 
 ## Credits and Acknowledgement
 ### Fonts :
-1. [Google Fonts](https://fonts.google.com/) - Used for fonts displayed in website 
-### Icons :
-1. [Font Awesome](https://fontawesome.com/) - Used in tabs and buttons of website
-### Data :
-1. [Nps.gov](https://https://www.nps.gov/subjects/developer/api-documentation.htm/)
-    - The dataset was used to display the parks information, campgrounds, parkinglots and photos on the website 
-2. [Foursquare.com](https://foursquare.com/)
-- The dataset was used to display convinience stores within the radius.
+1. [Dafont](https://www.dafont.com/) - Used for the romans story font displayed in website 
 ### Screenshot :
 1. [CreateMockup.com](https://www.createmockup.com/generate/) - Used to generate responsive website mockup for README file
-2. [Coolors.co](https://coolors.co/) -Used to generate the colour scheme for the project
-### Background photo:
-1. [Freepik.com](https://www.freepik.com) -Used for the background image of the introduction page
+2. [Canva.com](https://www.canva.com/) -Used to generate the colour scheme for the project
+### Banner photo:
+1. [Thewatchbox.com](https://www.thewatchbox.com/) -Used for the banner image of the home page
+2. [Acollectedman](https://www.acollectedman.com/) -Used for the card images in the home, detail my watch pages

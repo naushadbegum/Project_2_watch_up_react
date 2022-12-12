@@ -177,8 +177,11 @@ export default class AddNew extends React.Component {
                 progress: undefined,
                 theme: "light",
             });
-
-            notify()
+            if (this.state.brand.length > 0 && this.state.model.length > 0 && this.state.gender.length > 0 && this.state.image.length > 0 && this.state.water_resistance.length && this.state.glass_material.length && this.state.movements.length){
+                notify()
+            }else {
+                console.log("error")
+            }
         } catch (e) {
             console.log(e);
         }

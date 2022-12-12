@@ -2,6 +2,8 @@ import React from "react";
 import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us78.gitpod.io/";
 
@@ -23,9 +25,17 @@ export default class Edit extends React.Component {
 
         straps: [],
         cases: [],
-        contentLoaded: false,
         selectedWatchId: [],
         singleWatch: [],
+
+        showBrandError: false,
+        showModelError: false,
+        showPriceError: false,
+        showYearError: false,
+        showImageError: false,
+        showGenderError: false,
+        showUsernameError: false,
+        showEmailError: false,
 
     };
 
@@ -84,7 +94,7 @@ export default class Edit extends React.Component {
             singleWatch: single,
         });
     }
-    
+
 
     updateFormField = (event) => {
         this.setState({
@@ -167,11 +177,69 @@ export default class Edit extends React.Component {
     };
 
     watchUpdate = async () => {
-        let errors = this.validateUpdate();
+        if (!this.state.updateBrand || this.state.updateBrand.length > 50 || this.state.updateBrand === 0) {
+            this.setState({
+                showBrandError: true
+            })
+        } else {
+            this.setState({
+                showBrandError: false
+            })
+        }
+        // this.state.model.trim()
+        if (!this.state.updateModel || this.state.updateModel.length > 50 || this.state.updateModel === 0) {
+            this.setState({
+                showModelError: true
+            })
+        } else {
+            this.setState({
+                showModelError: false
+            })
+        }
 
-        if (errors.length === 0) {
+        // this.state.price.trim()
+        if (!this.state.updatePrice || this.state.updatePrice <= 0 || this.state.updatePrice > 100000000000 || this.state.updatePrice === 0) {
+            this.setState({
+                showPriceError: true
+            })
+        } else {
+            this.setState({
+                showPriceError: false
+            })
+        }
+        // this.state.year_made.trim()
+        if (!this.state.update_year_made || this.state.update_year_made > 9999 || this.state.update_year_made === 0) {
+            this.setState({
+                showYearError: true
+            })
+        } else {
+            this.setState({
+                showYearError: false
+            })
+        }
 
-            let requestBody = {
+        // this.state.image.trim()
+        if (!this.state.updateImage || this.state.updateImage > 300 || this.state.updateImage === 0) {
+            this.setState({
+                showImageError: true
+            })
+        } else {
+            this.setState({
+                showImageError: false
+            })
+        }
+        if (!this.state.updateGender || this.state.updateGender == null) {
+            this.setState({
+                showGenderError: true
+            })
+        } else {
+            this.setState({
+                showGenderError: false
+            })
+        }
+
+        try {
+            await axios.put(url + 'watch-listings/' + this.state.singleWatch._id, {
                 brand: this.state.updateBrand,
                 model: this.state.updateModel,
                 price: Number(this.state.updatePrice),
@@ -183,20 +251,24 @@ export default class Edit extends React.Component {
                 movements: this.state.updateMovements,
                 strapId: this.state.strapId,
                 caseId: this.state.caseId,
-            };
-
-            try {
-                await axios.put(url + 'watch-listings/' + this.state.singleWatch._id, requestBody);
-            } catch (error) {
-                console.log(error);
+            })
+            const notify = () => toast.success('Congratulations! Your watch added to our collection ❤️ ', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+            if (this.state.brand.length > 0 && this.state.model.length > 0 && this.state.gender.length > 0 && this.state.image.length > 0 && this.state.water_resistance.length && this.state.glass_material.length && this.state.movements.length) {
+                notify()
+            } else {
+                console.log("error")
             }
-            this.setState({
-                errors: errors
-            });
-        } else {
-            this.setState({
-                errors: errors
-            });
+        } catch (error) {
+            console.log(error);
         }
     };
 
@@ -429,6 +501,16 @@ export default class Edit extends React.Component {
                             </div>
                             <div className='d-flex justify-content-center'>
                                 <Button className="button--primary mt-4" type='edit' onClick={() => { this.watchUpdate() }}>I'm ready to update!</Button>
+                                <ToastContainer position="top-center"
+                                    autoClose={5000}
+                                    hideProgressBar
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                    theme="light" />
                             </div>
                         </div>
                     </div>
