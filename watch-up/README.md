@@ -1,13 +1,13 @@
 # **WATCH UP**
 
-![Screenshots of WATCH UP's homepage](photos/mobile-first-screenshot.png)
+![Screenshots of WATCH UP's homepage](./images/watchup-mockup.png)
 
-Link to demo : [WATCH UP](https://naushadbegum.github.io/Project-1-USA-National-Parks/)
+Link to demo : [WATCH UP](https://watch-up.netlify.app)
 
 ## Summary
 We cannot image a time without watches. It might be widely argued that in today's context, handphone is used to tell time. However, watches continue to play an important role in our lives. Many enthusiasts all around the world collect watches of different designs, brands and workmanship. This website aims to bring these collectors together and share their collection to the world.
----
 
+---
 ## UI/UX
 ### Strategy
 ### Organisational Goals
@@ -53,7 +53,7 @@ The color scheme chosen revolves around black, grey and tan. As watches are usua
 
 Entity-Relationship Diagram (ERD) is drawn to demostrate the various relationships between entities for the website prior to modelling the database in MongoDB.
 
-An Express server is set up and deployed to [Heroku](https://www.heroku.com/), where API endpoints are accessible via the base URL at [https://coffeetalk-api.herokuapp.com/](https://coffeetalk-api.herokuapp.com/).
+An Express server is set up and deployed to [render](https://www.render.com/), where API endpoints are accessible via the base URL at [https://project-2-watchup.onrender.com](https://project-2-watchup.onrender.com).
 
 #### Wireframes
 [Wireframes](./images/watchup_wireframe.pdf)
@@ -74,12 +74,7 @@ An Express server is set up and deployed to [Heroku](https://www.heroku.com/), w
     - Current limitation : 
          - User needs to select a state in the dropdown list before clicking on the campgrounds, parking lots and convinience stores. 
     - Future implementation :
-        - Dropdown list can be added to the guide tab as well so that users can select from the tab and click on campgrounds, parking lots and convinience stores. 
-4. Add weather feature 
-    - Current limitation :
-        - Due to time limitation, was not able to add the weather feature to the application.
-    - Future implementation :
-        - Using the open weather api, weather can be added to the map. A weather forcast feature will be very useful for the visitors. 
+        - Dropdown list can be added to the guide tab as well so that users can select from the tab and click on campgrounds, parking lots and convinience stores.  
 
 ---
 
@@ -142,7 +137,7 @@ The website is hosted using [render](https://www.render.com/), deployed directly
 1. [Dafont](https://www.dafont.com/) - Used for the romans story font displayed in website 
 ### Screenshot :
 1. [CreateMockup.com](https://www.createmockup.com/generate/) - Used to generate responsive website mockup for README file
-2. [Canva.com](https://www.canva.com/) -Used to generate the colour scheme for the project
+2. [Canva.com](https://www.canva.com/) -Used to generate the colour scheme and favicon logo for the project 
 ### Banner photo:
 1. [Thewatchbox.com](https://www.thewatchbox.com/) -Used for the banner image of the home page
 2. [Acollectedman](https://www.acollectedman.com/) -Used for the card images in the home, detail my watch pages
