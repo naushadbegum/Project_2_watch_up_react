@@ -5,10 +5,10 @@ import Button from 'react-bootstrap/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us78.gitpod.io/";
+const url = "https://project-2-watchup.onrender.com";
 
 export default class Edit extends React.Component {
-    url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us78.gitpod.io/";
+    url = "https://project-2-watchup.onrender.com";
     state = {
         updateBrand: "",
         updateModel: "",

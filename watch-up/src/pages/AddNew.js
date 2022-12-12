@@ -12,7 +12,7 @@ import Button from 'react-bootstrap/Button';
 
 
 export default class AddNew extends React.Component {
-    url = "https://3000-naushadbegu-project2wat-7gl4tkiecw5.ws-us78.gitpod.io/";
+    url = "https://project-2-watchup.onrender.com";
 
     state = {
         brand: "",
