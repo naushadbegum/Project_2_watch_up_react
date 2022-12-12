@@ -56,7 +56,7 @@ Entity-Relationship Diagram (ERD) is drawn to demostrate the various relationshi
 An Express server is set up and deployed to [render](https://www.render.com/), where API endpoints are accessible via the base URL at [https://project-2-watchup.onrender.com](https://project-2-watchup.onrender.com).
 
 #### Wireframes
-[Wireframes](./images/watchup_wireframe.pdf)
+[Wireframes](./src/images/watchup_wireframe.pdf)
 
 ## Limitations and Future Implementations
 
@@ -126,9 +126,16 @@ The test cases can be found [here](test-cases.pdf).
 
 ---
 
+
 ## Deployment
 
-The website is hosted using [render](https://www.render.com/), deployed directly from the main branch of the Github repository.
+### Frontend
+
+The website is hosted using [Netlify](https://www.netlify.com/), deployed directly from the main branch of this Github repository.
+
+### Backend
+
+The Express server is hosted using [render](https://www.render.com/), deployed directly from the main branch of the Github repository [here](https://github.com/naushadbegum/Project_2_Watch).
 
 ---
 
