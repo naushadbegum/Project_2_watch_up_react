@@ -1,6 +1,6 @@
 # **WATCH UP**
 
-![Screenshots of WATCH UP's homepage](./images/watchup-mockup.png)
+![Screenshots of WATCH UP's homepage](./src/images/watchup-mockup.png)
 
 Link to demo : [WATCH UP](https://watch-up.netlify.app)
 
@@ -49,7 +49,7 @@ The color scheme chosen revolves around black, grey and tan. As watches are usua
 ### Structure and Skeleton
 
 #### Database
-![ERD Diagram](./images/ERD_watchup.png)
+![ERD Diagram](./src/images/ERD_watchup.png)
 
 Entity-Relationship Diagram (ERD) is drawn to demostrate the various relationships between entities for the website prior to modelling the database in MongoDB.
 
