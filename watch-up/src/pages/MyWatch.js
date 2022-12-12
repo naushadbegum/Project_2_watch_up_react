@@ -178,7 +178,7 @@ export default class MyWatch extends React.Component {
                                     //     ""
                                     // )}
                                     <React.Fragment>
-                                        <div className='d-flex'>
+                                        <div className='my-watch-card d-flex'>
                                             {this.state.data.map(single => (
                                                 <React.Fragment key={single._id}>
                                                     <Card className='watch-card mt-3' >
@@ -189,11 +189,11 @@ export default class MyWatch extends React.Component {
                                                             <Card.Text>
                                                                 {single.brand}
                                                             </Card.Text>
-                                                            <Button variant="primary" onClick={() => {
+                                                            <Button className="button--primary-mywatch-card" variant="primary" onClick={() => {
                                                                 this.clickToEditPage(single._id);
                                                             }}
                                                             >Update</Button>
-                                                            <Button variant="primary" onClick={() => {
+                                                            <Button className="button--primary-mywatch-card" variant="primary" onClick={() => {
                                                                 this.deleteWatch(single._id);
                                                             }}
                                                             >Delete</Button>

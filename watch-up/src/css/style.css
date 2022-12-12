@@ -15,8 +15,8 @@
 }
 
 .navbar .navbar-brand {
-    padding: 1rem 0;
-    display: block;
+    /* padding: 1rem 0; */
+    /* display: block; */
     text-decoration: none;
 }
 
@@ -28,7 +28,7 @@
 
 .navbar-toggler{
     position: fixed;
-    top: 18px;
+    top: 40px;
     right: 15px;
     z-index: 9998;
     border: 0;
@@ -42,9 +42,10 @@
     outline: none !important;
 }
 
-.navbar-toggler-mobile {
+/* .navbar-toggler-mobile {
     background-color: silver;
-}
+    padding: 15px;
+} */
 
 #nav-home {
     color:  #2e2e3a;
@@ -116,11 +117,32 @@
     margin-left: 50px;
     display: flex;
     flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    
 }
 
 @media (max-width: 800px) {
     .cards {
       flex-direction: column;
+    }
+    .navbar-brand{
+        top: 0px;
+        text-align: center;
+    }
+    .navbar-toggler-mobile {
+        background-color: silver;
+        margin: 0px 0px 0px 0px;
+        padding: 50px 50px 50px 50px;
+    }
+    #nav-home{
+        font-size: 20px;
+    }
+    #nav-addnew{
+        font-size: 20px;
+    }
+    #nav-mywatch{
+        font-size: 20px;
     }
   }
 
@@ -153,6 +175,7 @@
     margin: 20px 20px 0 0;
     overflow: auto;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: beige;
 }
 
 .detail-img {
@@ -164,7 +187,8 @@
 }
 
 .detail-content {
-    margin-left: 210px;
+    padding-left: 50px !important;
+    padding-right: 50px;
     padding-top: 50px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -273,6 +297,22 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.button--primary-mywatch-card {
+    background-color: #2e2e3a;
+    border: none;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.button--primary-mywatch-card:hover {
+    background-color: #AFABA5;
+}
+
+.my-watch-card {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 /* edit page */

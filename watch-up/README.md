@@ -1,70 +1,118 @@
-# Getting Started with Create React App
+# **WATCH UP**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Screenshots of WATCH UP's homepage](photos/mobile-first-screenshot.png)
 
-## Available Scripts
+Link to demo : [WATCH UP](https://naushadbegum.github.io/Project-1-USA-National-Parks/)
 
-In the project directory, you can run:
+## Summary
+We cannot image a time without watches. It might be widely argued that in today's context, handphone is used to tell time. However, watches continue to play an important role in our lives. Many enthusiasts all around the world collect watches of different designs, brands and workmanship. This website aims to bring these collectors together and share their collection to the world.
+---
 
-### `npm start`
+## UI/UX
+### Strategy
+### Organisational Goals
+Every watch in the world is unique. The older the watch is, the more valuable it becomes. Although new watches can be found in many shops, the older watches are rare. It would be ideal if there an application for watch collectors to showcase their watches and also look at other's collections. Visitors of the website can search via brand, model, movement, gender and glass material from the collection. Watch collectors can add their watch to the collection as well. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### User Goals
+The users of WATCH UP are mostly veteran watch collectors, watch enthusiasts and watch buyers. The aim of the users is to be able to find and post watches to the collection. 
+| User Stories | Accceptance Criteria |
+| ----------- | ----------- |
+| As a water collector, I want to show my collection to others and share my joy of collecting with watch colelctors. | A water collector can upload his watch details with a photo of his watch and he can edit the details as well. |
+| As a water enthusiat, I like to view watch collections especially older watches and know what watches others have. | There is a criteria for watch collectors to upload the year the watch was released, so users will know the age of the watch. |
+| As a water buyer, I wish to compare the price and also search from the collection via brand, model I am interested in. | Watches can be searched based on the model and brand. |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Design Decisions
 
-### `npm test`
+#### Color scheme
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Screenshot of color scheme](./src/images/watchup-scheme.png)
 
-### `npm run build`
+The color scheme chosen revolves around black, grey and tan. As watches are usually dull in colour, to put more focus on the watches rather than the bakcground, dull colours were used for the application. Green was only used for the title of the application to make name stand out and also complements the banner. 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Fonts
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+*Serif* is a font family used for apt giving the formal look for the watch. *Sans-serif* was mainly used to ensure that the words are clear when read in the forms. 
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Features
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+| Features | Description |
+| ----------- | ----------- |
+| Search parks by name and state | These features allow the user to select the state and search based on the name of the park. This will be convenient for users as there are many national parks in the USA. Searching by states helps to narrow down the search.|
+| View Campgrounds in the selected state | Users are able to view all the campgrounds in every state and click on the markers. The popup from the marker will provide photo and the address which is very important for travellers. |
+| View Parking Lots in the selected state | Users are able to view all the parking lots in every state and click on the markers. The popup from the marker will provide information about the parking lots. It will provide information such as the number of cars can be parked and also the type of cars that can be parked.|
+| View Convenience stores in the selected state | Users are able to view all the covenience within 10km radius of the map view. The markers will show the name of the shop. |
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Limitations and Future Implementations
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Design a more user friendly search engine
+    - Current limitation : 
+        - The current search feature can only handle queries that match the park names and in that particular state. Users need to key in the park name correctly. 
+    - Future implementation : 
+        - Suggestions can be given while the user is typing and especially if user has typo errors in the query 
+2. Adding hiking trials for the parks
+    - Current limitation :
+        - The website provides information such as photo, address, campgrounds and parking lots of the parks based on the information from nps.gov.
+    - Future implementation :
+        - Hiking trials based on state can be added to the map. This will be useful not just for hikers but also for tourists who are visiting for the first time as well. 
+3. Separate the Guide tab without the need to 
+    - Current limitation : 
+         - User needs to select a state in the dropdown list before clicking on the campgrounds, parking lots and convinience stores. 
+    - Future implementation :
+        - Dropdown list can be added to the guide tab as well so that users can select from the tab and click on campgrounds, parking lots and convinience stores. 
+4. Add weather feature 
+    - Current limitation :
+        - Due to time limitation, was not able to add the weather feature to the application.
+    - Future implementation :
+        - Using the open weather api, weather can be added to the map. A weather forcast feature will be very useful for the visitors. 
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Technologies Used
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. HTML
 
-### Code Splitting
+2. CSS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. [Bootstrap 5](https://getbootstrap.com/docs/5.0/getting-started/introduction/) 
+    - Used for buttons, tabs and offcanvas of website
 
-### Analyzing the Bundle Size
+4. JavaScript
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+5. [Axios](https://github.com/axios/axios)
+    - Used to fetch data from APIs used by website
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+The website is tested for responsiveness using Developer Tools on Chrome browser for mobile, tablet and desktop screen widths.
+The test cases can be found [here](test-cases.pdf).
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Deployment
 
-### `npm run build` fails to minify
+The website is hosted using [Github](https://www.github.com/), deployed directly from the main branch of the Github repository.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## Credits and Acknowledgement
+### Fonts :
+1. [Google Fonts](https://fonts.google.com/) - Used for fonts displayed in website 
+### Icons :
+1. [Font Awesome](https://fontawesome.com/) - Used in tabs and buttons of website
+### Data :
+1. [Nps.gov](https://https://www.nps.gov/subjects/developer/api-documentation.htm/)
+    - The dataset was used to display the parks information, campgrounds, parkinglots and photos on the website 
+2. [Foursquare.com](https://foursquare.com/)
+- The dataset was used to display convinience stores within the radius.
+### Screenshot :
+1. [CreateMockup.com](https://www.createmockup.com/generate/) - Used to generate responsive website mockup for README file
+2. [Coolors.co](https://coolors.co/) -Used to generate the colour scheme for the project
+### Background photo:
+1. [Freepik.com](https://www.freepik.com) -Used for the background image of the introduction page

@@ -65,23 +65,6 @@ export default class AddNew extends React.Component {
 
     async addNew() {
         //initialise the attributes
-        let brand = this.state.brand;
-        let model = this.state.model;
-        let price = Number(this.state.price);
-        let year_made = Number(this.state.year_made);
-        let gender = this.state.gender;
-        let image = this.state.image;
-        let water_resistance = this.state.water_resistance;
-        let glass_material = this.state.glass_material;
-        let movements = this.state.movements;
-        let user = {
-            "username": this.state.username,
-            "email": this.state.email
-        };
-        let strapId = this.state.strapId;
-        let caseId = this.state.caseId;
-
-
         this.state.brand.trim()
         if (!this.state.brand || this.state.brand.length > 50 || this.state.brand === 0) {
             this.setState({
@@ -166,23 +149,24 @@ export default class AddNew extends React.Component {
 
 
         try {
-            let response = await axios.post(this.url + "create-listings", {
-                brand,
-                model,
-                price,
-                year_made,
-                water_resistance,
-                glass_material,
-                movements,
-                image,
-                gender,
-                strapId,
-                caseId,
-                user
+            await axios.post(this.url + "create-listings", {
+                brand : this.state.brand,
+                model : this.state.model,
+                price : Number(this.state.price),
+                year_made  : Number(this.state.year_made),
+                gender  : this.state.gender,
+                image  : this.state.image,
+                water_resistance  : this.state.water_resistance,
+                glass_material  : this.state.glass_material,
+                movements : this.state.movements,
+                user  : {
+                    "username": this.state.username,
+                    "email": this.state.email
+                },
+                strapId  : this.state.strapId,
+                caseId  : this.state.caseId,
 
             })
-            console.log(response)
-
             const notify = () => toast.success('Congratulations! Your watch added to our collection ❤️ ', {
                 position: "top-center",
                 autoClose: 5000,
@@ -192,7 +176,7 @@ export default class AddNew extends React.Component {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
+            });
 
             notify()
         } catch (e) {
@@ -479,29 +463,29 @@ export default class AddNew extends React.Component {
                                 </Form.Group>
 
                             </div>
-                            <div className = 'd-flex justify-content-center'>
-                <Button className="button--primary mt-4" type='addnew' onClick={this.addNew.bind(this)}>I'm ready to Watch Up!</Button>
-                <ToastContainer position="top-center"
-                    autoClose={5000}
-                    hideProgressBar
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="light" />
-                </div>
+                            <div className='d-flex justify-content-center'>
+                                <Button className="button--primary mt-4" type='addnew' onClick={this.addNew.bind(this)}>I'm ready to Watch Up!</Button>
+                                <ToastContainer position="top-center"
+                                    autoClose={5000}
+                                    hideProgressBar
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                    theme="light" />
+                            </div>
                         </div>
                     </div>
 
                     <div>
 
                     </div>
-                    </section>
-                
-                
-                
+                </section>
+
+
+
             </React.Fragment>
         );
     }

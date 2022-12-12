@@ -84,39 +84,7 @@ export default class Edit extends React.Component {
             singleWatch: single,
         });
     }
-    watchUpdate = async () => {
-        let errors = this.validateUpdate();
-
-        if (errors.length === 0) {
-
-            let requestBody = {
-                brand: this.state.updateBrand,
-                model: this.state.updateModel,
-                price: Number(this.state.updatePrice),
-                year_made: Number(this.state.update_year_made),
-                gender: this.state.updateGender,
-                image: this.state.updateImage,
-                water_resistance: this.state.update_water_resistance,
-                glass_material: this.state.update_glass_material,
-                movements: this.state.updateMovements,
-                strapId: this.state.strapId,
-                caseId: this.state.caseId,
-            };
-
-            try {
-                await axios.put(url + 'watch-listings/' + this.state.singleWatch._id, requestBody);
-            } catch (error) {
-                console.log(error);
-            }
-            this.setState({
-                errors: errors
-            });
-        } else {
-            this.setState({
-                errors: errors
-            });
-        }
-    };
+    
 
     updateFormField = (event) => {
         this.setState({
@@ -196,6 +164,40 @@ export default class Edit extends React.Component {
         }
 
         return errors;
+    };
+
+    watchUpdate = async () => {
+        let errors = this.validateUpdate();
+
+        if (errors.length === 0) {
+
+            let requestBody = {
+                brand: this.state.updateBrand,
+                model: this.state.updateModel,
+                price: Number(this.state.updatePrice),
+                year_made: Number(this.state.update_year_made),
+                gender: this.state.updateGender,
+                image: this.state.updateImage,
+                water_resistance: this.state.update_water_resistance,
+                glass_material: this.state.update_glass_material,
+                movements: this.state.updateMovements,
+                strapId: this.state.strapId,
+                caseId: this.state.caseId,
+            };
+
+            try {
+                await axios.put(url + 'watch-listings/' + this.state.singleWatch._id, requestBody);
+            } catch (error) {
+                console.log(error);
+            }
+            this.setState({
+                errors: errors
+            });
+        } else {
+            this.setState({
+                errors: errors
+            });
+        }
     };
 
 
