@@ -177,7 +177,7 @@ export default class Edit extends React.Component {
     //     return errors;
     // };
 
-    watchUpdate = async () => {
+    async watchUpdate () {
         if (!this.state.updateBrand || this.state.updateBrand.length > 50 || this.state.updateBrand === 0) {
             this.setState({
                 showBrandError: true

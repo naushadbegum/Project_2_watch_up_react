@@ -153,7 +153,7 @@ export default class Home extends React.Component {
                                             type="text"
                                             className="form-control"
                                             id="searchModel"
-                                            placeholder="Search for watch model"
+                                            placeholder="Search by watch model"
                                             value={this.state.searchModel}
                                             onChange={this.updateFormField}
                                         />
