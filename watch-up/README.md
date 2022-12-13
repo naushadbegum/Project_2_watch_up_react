@@ -53,7 +53,7 @@ The color scheme chosen revolves around black, grey and tan. As watches are usua
 
 Entity-Relationship Diagram (ERD) is drawn to demostrate the various relationships between entities for the website prior to modelling the database in MongoDB.
 
-An Express server is set up and deployed to [render](https://www.render.com/), where API endpoints are accessible via the base URL at [https://project-2-watchup.onrender.com](https://project-2-watchup.onrender.com).
+An Express server is set up and deployed to [render](https://www.render.com/), where API endpoints are accessible via the base URL at [https://project-2-watchup.onrender.com/](https://project-2-watchup.onrender.com/).
 
 #### Wireframes
 [Wireframes](./src/images/watchup_wireframe.pdf)

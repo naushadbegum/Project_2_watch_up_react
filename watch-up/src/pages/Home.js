@@ -8,7 +8,7 @@ import "./../css/style.css";
 import Form from 'react-bootstrap/Form';
 
 export default class Home extends React.Component {
-    url = "https://project-2-watchup.onrender.com";
+    url = "https://project-2-watchup.onrender.com/";
     state = {
         data: [],
 

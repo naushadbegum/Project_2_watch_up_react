@@ -5,11 +5,12 @@ import Button from 'react-bootstrap/Button';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./../css/style.css";
+import "./../App.css";
 
-const url = "https://project-2-watchup.onrender.com";
+const url = "https://project-2-watchup.onrender.com/";
 
 export default class Edit extends React.Component {
-    url = "https://project-2-watchup.onrender.com";
+    url = "https://project-2-watchup.onrender.com/";
     state = {
         updateBrand: "",
         updateModel: "",
@@ -64,7 +65,7 @@ export default class Edit extends React.Component {
         console.log(this.state.singleWatch);
 
 
-        this.setState({
+        await this.setState({
             updateBrand: this.state.singleWatch.brand,
             updateModel: this.state.singleWatch.model,
             updatePrice: this.state.singleWatch.price,
@@ -253,7 +254,7 @@ export default class Edit extends React.Component {
                 strapId: this.state.strapId,
                 caseId: this.state.caseId,
             })
-            const notify = () => toast.success('We have updated the watch collection! You can view in the Home page ', {
+            const notify = () => toast.success('We have updated the watch collection! You can view in the Home page!', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: true,
@@ -263,7 +264,7 @@ export default class Edit extends React.Component {
                 progress: undefined,
                 theme: "light",
             });
-            if (this.state.brand.length > 0 && this.state.model.length > 0 && this.state.gender.length > 0 && this.state.image.length > 0 && this.state.water_resistance.length && this.state.glass_material.length && this.state.movements.length) {
+            if (this.state.updateBrand.length > 0 && this.state.updateModel.length > 0 && this.state.updateGender.length > 0 && this.state.updateImage.length > 0 && this.state.update_water_resistance.length && this.state.update_glass_material.length && this.state.updateMovements.length) {
                 notify()
             } else {
                 console.log("error")
@@ -501,7 +502,7 @@ export default class Edit extends React.Component {
                                 </Form.Group>
                             </div>
                             <div className='d-flex justify-content-center'>
-                                <Button className="button--primary mt-4" type='edit' onClick={() => { this.watchUpdate() }}>I'm ready to update!</Button>
+                                <Button className="button--primary mt-4" type='edit' onClick={this.watchUpdate.bind(this) }>I'm ready to update!</Button>
                                 <ToastContainer position="top-center"
                                     autoClose={5000}
                                     hideProgressBar

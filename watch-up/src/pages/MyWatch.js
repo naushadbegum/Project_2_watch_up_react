@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import "./../css/style.css";
 
 export default class MyWatch extends React.Component {
-    url = "https://project-2-watchup.onrender.com";
+    url = "https://project-2-watchup.onrender.com/";
 
     state = {
         data: [],
