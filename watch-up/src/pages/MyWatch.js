@@ -13,7 +13,6 @@ export default class MyWatch extends React.Component {
     state = {
         data: [],
         searchEmail: "",
-        user: {},
 
         page: "mywatch",
         singleWatchId: null,
@@ -37,13 +36,13 @@ export default class MyWatch extends React.Component {
         this.setState({ page: "mywatch" });
     }
 
-    isLoading = () => {
-        this.setState({ isLoading: true })
-    }
+    // isLoading = () => {
+    //     this.setState({ isLoading: true })
+    // }
 
-    closeLoading = () => {
-        this.setState({ isLoading: false })
-    }
+    // closeLoading = () => {
+    //     this.setState({ isLoading: false })
+    // }
 
     deleteWatch = async (singleWatchId) => {
 
@@ -63,21 +62,21 @@ export default class MyWatch extends React.Component {
     }
 
     async componentDidMount() {
-        this.isLoading();
+        // this.isLoading();
         try {
             let response = await axios.get(this.url + "watch-listings");
             this.setState({ data: response.data });
         } catch (e) {
             console.log(e);
         }
-        this.closeLoading();
+        // this.closeLoading();
     }
 
     updateFormField = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
-        console.log(this.state.searchEmail)
+        // console.log(this.state.searchEmail)
     };
 
     searchMyWatch = async (e) => {
@@ -89,31 +88,30 @@ export default class MyWatch extends React.Component {
                 emailSearchSuccess: false
             })
         } else {
-            this.isLoading();
+            // this.isLoading();
             try {
                 let response = await axios.get(this.url + "watch-listings", {
                     params: {
-                        user: this.state.user,
                         email: this.state.searchEmail,
                     },
                 });
-                console.log(response.data)
+                // console.log(response.data)
                 this.setState({
                     data: response.data,
-                    invalidEmail: false,
                     emailSearchSuccess: true,
+                    invalidEmail: false,
                 });
 
-                console.log(response.data);
+                // console.log(response.data);
             } catch (e) {
                 console.log(e);
                 this.setState({
                     data: [],
-                    invalidEmail: "emailIncorrect",
                     emailSearchSuccess: false,
+                    invalidEmail: "emailIncorrect"
                 })
             }
-            this.closeLoading();
+            // this.closeLoading();
         };
     }
 
@@ -161,16 +159,16 @@ export default class MyWatch extends React.Component {
                                 />
                                 <div>
                                     <button
-                                        className="button--primary mt-4"
+                                        className="button--primary-my-watch-search mt-4"
                                         id="mywatch-button"
                                         onClick={this.searchMyWatch}
                                     >
                                         Search
                                     </button>
                                 </div>
-
-                                {this.state.invalidEmail === "formatIncorrect" && <div className='mywatch-error-message'> Enter email in valid format eg. watch@gmail.com </div>}
                                 {this.state.invalidEmail === "emailIncorrect" && <div className='mywatch-error-message'> Email not found. Enter the email you used to create the watch listing.</div>}
+                                {this.state.invalidEmail === "formatIncorrect" && <div className='mywatch-error-message'> Enter email in valid format eg. watch@gmail.com </div>}
+                                
                                 {this.state.emailSearchSuccess ?
                                     // {this.state.isLoading ? (
                                     //     <div id="loading">Loading</div>

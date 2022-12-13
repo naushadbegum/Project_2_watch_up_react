@@ -222,6 +222,46 @@
     border-color: transparent;
 }
 
+.button--primary-detail{
+    background-color: #2e2e3a;
+    border-color: transparent;
+    color: white;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem ;
+    width: 30%;
+    height: 50%;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 2px;
+    border-radius: 10px;
+}
+
+.button--primary-detail:hover{
+    background-color:  #D2B48C;
+    color: white;
+    border-color: transparent;
+}
+
+.button--primary-my-watch-search{
+    background-color: #2e2e3a;
+    border-color: transparent;
+    color: white;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem ;
+    width: 30%;
+    height: 50%;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 2px;
+    border-radius: 10px;
+}
+
+
+.button--primary-my-watch-search:hover{
+    background-color: white;
+    color: #2e2e3a;
+    border-color: transparent;
+}
 .specs-table {
     height: 20px;
     width: 50px;
@@ -330,4 +370,8 @@
 
 .errorMessage {
     color: white;
+}
+
+.mywatch-error-message{
+    color: white; 
 }
