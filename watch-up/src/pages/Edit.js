@@ -30,6 +30,7 @@ export default class Edit extends React.Component {
         selectedWatchId: [],
         singleWatch: [],
 
+
         showBrandError: false,
         showModelError: false,
         showPriceError: false,
@@ -47,7 +48,7 @@ export default class Edit extends React.Component {
         let strapsRequest = axios.get(url + "straps");
         let casesRequest = axios.get(url + "cases");
         let singleWatchRequest = axios.get(url + "watch-listing/" + this.props.singleWatchId);
-        console.log(this.props.singleWatchId)
+        console.log("this.props.props.singleWatchID=", this.props.singleWatchId)
 
         let [watchlistingResponse, strapsResponse, casesResponse, singleWatchResponse] =
             await axios.all([
@@ -62,21 +63,20 @@ export default class Edit extends React.Component {
         let cases = casesResponse.data;
         let single = singleWatchResponse.data[0];
         console.log(single);
-        console.log(this.state.singleWatch);
+        // console.log(this.state.singleWatch);
 
 
         await this.setState({
-            updateBrand: this.state.singleWatch.brand,
-            updateModel: this.state.singleWatch.model,
-            updatePrice: this.state.singleWatch.price,
-            update_year_made: this.state.singleWatch.year_made,
-            update_water_resistance: this.state.singleWatch.water_resistance,
-            update_glass_material: this.state.singleWatch.glass_material,
-            updateMovements: this.state.singleWatch.movements,
-            updateImage: this.state.singleWatch.image,
-            updateGender: this.state.singleWatch.gender,
+            updateBrand: single.brand,
+            updateModel: single.model,
+            updatePrice: single.price,
+            update_year_made: single.year_made,
+            update_water_resistance: single.water_resistance,
+            update_glass_material: single.glass_material,
+            updateMovements: single.movements,
+            updateImage: single.image,
+            updateGender: single.gender,
         })
-        console.log(this.state.singleWatch.brand);
 
         this.setState({
             brand: watchlisting.brand,
@@ -254,7 +254,7 @@ export default class Edit extends React.Component {
                 strapId: this.state.strapId,
                 caseId: this.state.caseId,
             })
-            const notify = () => toast.success('We have updated the watch collection! You can view in the Home page!', {
+            const notify = () => toast.success('We have updated the watch detail! You can view in the Home page!', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: true,

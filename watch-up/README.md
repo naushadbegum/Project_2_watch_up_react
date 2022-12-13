@@ -122,7 +122,7 @@ An Express server is set up and deployed to [render](https://www.render.com/), w
 ## Testing
 
 The website is tested for responsiveness using Developer Tools on Chrome browser for mobile, tablet and desktop screen widths.
-The test cases can be found [here](test-cases.pdf).
+The test cases can be found [here](./src/images/watch-up-test-cases.pdf).
 
 ---
 
