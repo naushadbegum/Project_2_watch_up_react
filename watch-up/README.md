@@ -148,3 +148,5 @@ The Express server is hosted using [render](https://www.render.com/), deployed d
 ### Banner photo:
 1. [Thewatchbox.com](https://www.thewatchbox.com/) -Used for the banner image of the home page
 2. [Acollectedman](https://www.acollectedman.com/) -Used for the card images in the home, detail my watch pages
+### Bootstrap Form :
+1. [WesleyGithub](https://github.com/e0026557) -- used to create Bootstrap Form
