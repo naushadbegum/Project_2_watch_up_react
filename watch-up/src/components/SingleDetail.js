@@ -98,6 +98,9 @@ export default class SingleDetail extends React.Component {
                                 <button onClick={this.props.changeToHomePage} className="button--primary-detail">Back to Home page</button>
                             </div>
                         </div>
+                        <div className="footer">
+                        <p> © WATCH UP. All rights reserved.</p>    
+                    </div>
 
                     </React.Fragment>
                 ))

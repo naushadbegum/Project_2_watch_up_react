@@ -521,6 +521,9 @@ export default class Edit extends React.Component {
 
                     </div>
                 </section>
+                <div className="footer">
+                        <p> © WATCH UP. All rights reserved.</p>    
+                </div>
 
             </React.Fragment>
 

@@ -485,7 +485,11 @@ export default class AddNew extends React.Component {
                     <div>
 
                     </div>
+                    
                 </section>
+                <div className="footer">
+                        <p> © WATCH UP. All rights reserved.</p>    
+                </div>
 
 
 

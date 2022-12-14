@@ -221,6 +221,9 @@ export default class MyWatch extends React.Component {
                             </div>
                         </div>
                     </section>
+                    <div className="footer">
+                        <p> © WATCH UP. All rights reserved.</p>    
+                    </div>
 
                 </React.Fragment>
             );

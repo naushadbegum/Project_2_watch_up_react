@@ -160,7 +160,7 @@ export default class Home extends React.Component {
                                     </Form.Group>
 
                                     <Form.Group className='container col-lg-6 mb-3'>
-                                        <Form.Label>Targeted gender</Form.Label>
+                                        <Form.Label className="gender-name">Targeted gender</Form.Label> 
                                         <Form className="form-check form-check-inline">
                                             <input
                                                 className="form-check-input"
@@ -272,6 +272,9 @@ export default class Home extends React.Component {
                             ))
                         }
                     </div >
+                    <div className="footer">
+                        <p> © WATCH UP. All rights reserved.</p>    
+                    </div>
                 </React.Fragment >
             );
         }

@@ -375,3 +375,24 @@
 .mywatch-error-message{
     color: white; 
 }
+
+/* footer */
+
+.footer {
+    border-top: 1px solid lightgray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #008037;
+    text-align: center;
+}
+
+.footer > p {
+    font-size: 14px;
+    color: white;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+}
+
+.gender-name{
+    padding-right: 1rem;
+}
