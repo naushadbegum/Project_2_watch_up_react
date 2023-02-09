@@ -17,9 +17,9 @@ Every watch in the world is unique. The older the watch is, the more valuable it
 The users of WATCH UP are mostly veteran watch collectors, watch enthusiasts and watch buyers. The aim of the users is to be able to find and post watches to the collection. 
 | User Stories | Accceptance Criteria |
 | ----------- | ----------- |
-| As a water collector, I want to show my collection to others and share my joy of collecting with watch colelctors. | A water collector can upload his watch details with a photo of his watch and he can edit the details as well. |
-| As a water enthusiat, I like to view watch collections especially older watches and know what watches others have. | There is a criteria for watch collectors to upload the year the watch was released, so users will know the age of the watch. |
-| As a water buyer, I wish to compare the price and also search from the collection via brand, model I am interested in. | Watches can be searched based on the model and brand. |
+| As a watch collector, I want to show my collection to others and share my joy of collecting with watch colelctors. | A watch collector can upload his watch details with a photo of his watch and he can edit the details as well. |
+| As a watch enthusiat, I like to view watch collections especially older watches and know what watches others have. | There is a criteria for watch collectors to upload the year the watch was released, so users will know the age of the watch. |
+| As a watch buyer, I wish to compare the price and also search from the collection via brand, model I am interested in. | Watches can be searched based on the model and brand. |
 
 ### Design Decisions
 
